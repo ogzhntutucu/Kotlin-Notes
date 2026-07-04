@@ -1,4 +1,7 @@
-## Temel Terminoloji (Basic Terminology)
+# Kotlin Notes 1
+#### ogzhntutucu
+---
+### Temel Terminoloji (Basic Terminology)
 
 - **Program (Program):** Bilgisayara ne yapması gerektiğini söyleyen komutlar dizisidir. İşlemlerin yukarıdan aşağıya, yazıldıkları sırayla tahmin edilebilir bir şekilde çalıştırılmasına **Sıralı Akış (Sequential Flow)** denir.
 - **Komut (Statement):** İşletilecek tek bir eylemi temsil eden kod satırıdır. (Örneğin ekrana yazı yazdırmak veya bir değişken ataması yapmak).
@@ -56,6 +59,11 @@ fun main() {
 	- Error solution
 
 ---
+
+Think of them as people...
+JDK - the big boss, under whom JRE and development tools like compiler, debugger, archiver etc. work. If you want to develop java programs, you go to this person.
+JRE - the execution environment provider, under whom JVM and the java class libraries work. When we want to run our compiled source code, we go to this person. The Java class library is a very cool person. This guy helps a lot in writing programs.
+JVM - the guy who interprets the compiled source code (i.e. bytecode) into native machine code that the computer can understand. This person acts as a mediator between computer and our bytecode. Think of him as a linguist who helps you translate what other person is speaking.
 
 ![[Pasted image 20260702162454.png]]
 
@@ -193,6 +201,7 @@ fun main() {
 
 ![[Pasted image 20260703134159.png]]
 Boyle de goruntulenebilir:
+
 ![[Pasted image 20260703134226.png]]
 
 ---
@@ -341,80 +350,3 @@ age = "31 years old" // Type mismatch
 Note, you cannot change the type of a variable.
 
 ---
-
-**Integer numbers** (0, 1, 2, ...) are represented by the following four types: `Long`, `Int`, `Short`, `Byte` (from the largest to the smallest). These types have different sizes and may represent different ranges of values. The integer type range can be calculated as −(2n−1) to (2n−1)−1, where **n** is the number of bits. The range includes 0, that's why we subtract 1 from the upper bound.
-
-- `Byte`: 8 bits (1 byte), range varies from -128 to 127;
-- `Short`: 16 bits (2 bytes), range varies from -32768 to 32767;
-- `Int`: 32 bits (4 bytes), range varies from −(2^31) to (2^31)−1;
-- `Long`: 64 bits (8 bytes), range varies from −(2^63) to (2^63)−1.
-
-```kotlin
-val zero = 0 // Int
-val one = 1  // Int
-val oneMillion = 1_000_000  // Int
-
-val twoMillion = 2_000_000L           // Long because it is tagged with L
-val bigNumber = 1_000_000_000_000_000 // Long, Kotlin automatically chooses it (Int is too small)
-val ten: Long = 10                    // Long because the type is specified
-
-val shortNumber: Short = 15 // Short because the type is specified
-val byteNumber: Byte = 15   // Byte because the type is specified
-```
-
-Floating-point types represent numbers with fractional parts. Kotlin has two such types: `Double` (64 bits) and `Float` (32 bits). These types can store only a limited number of decimal digits (~6-7 for `Float` and ~14-16 for `Double`). The `Double` type is more common in practice:
-
-```kotlin
-val pi = 3.1415              // Double
-val e = 2.71828f             // Float because it is tagged with f
-
-val fraction: Float = 1.51f  // Float because the type is specified
-// Float diye tipini belirtmis bile olsak degerin sagina f ya da F birakmak zorundayiz. cunku birakmazsak o degerin tipi double sayilacaktir ve bu satir icin type mismatch olur.
-```
-
-- Integer types: Byte < Short < Int < Long
-- Floating-point types: Float < Double
-
-For type inference -> Kotlin neredeyse her zaman bir sayının tamsayı (**integer**) olduğu sonucunu çıkaracaktır (aksini belirtmediğiniz veya ondalık sayı kullanmadığınız sürece)
-
----
-
-## Characters
-
-Kotlin has a `Char` type to represent various letter characters (uppercase and lowercase), digits, and other symbols. Each character is a letter character in **single quotes**. The size is similar to the `Short` type (2 bytes = 16 bits):
-
-```kotlin
-val lowerCaseLetter = 'a'
-val upperCaseLetter = 'Q'
-val number = '1'
-val space = ' '
-val dollar = '$'
-```
-
-## Booleans
-
-Kotlin provides a type called `Boolean`. It can store only two values: `true` and `false`. It represents only one bit of information, but its size is not precisely defined.
-
-```kotlin
-val enabled = true
-val bugFound = false
-```
-
----
-
-```kotlin
-@Suppress("VariableNaming", "MagicNumber")  
-val `good name` = 14  
-println(`good name`)  
-  
-@Suppress("MagicNumber")  
-val fraction: Float = 1.51f  
-println(fraction)
-```
-
-@Supress ile uyarilar bastirilabiliyor.
-
-`@Suppress` bir **Anotasyon (Annotation)** türüdür ve derleyiciye (compiler) veya projene entegre ettiğin kod kalite araçlarına (örneğin Ktlint, Detekt veya IDE'nin kendi analizörü) şunu söyler: _"Evet, burada kurallara aykırı bir şey yazdığımın farkındayım ama bilerek yaptım. Lütfen altını sarı/kırmızı çizmeyi bırak ve bu kural ihlalini görmezden gel."_
-
----
-
