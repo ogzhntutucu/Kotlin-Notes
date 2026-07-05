@@ -1,6 +1,8 @@
-# Kotlin Notes 1
-#### ogzhntutucu
+# Kotlin Notes - 2
+#### @ogzhntutucu
+
 ---
+### Integer Numbers
 
 **Integer numbers** (0, 1, 2, ...) are represented by the following four types: `Long`, `Int`, `Short`, `Byte` (from the largest to the smallest). These types have different sizes and may represent different ranges of values. The integer type range can be calculated as −(2n−1) to (2n−1)−1, where **n** is the number of bits. The range includes 0, that's why we subtract 1 from the upper bound.
 
@@ -22,6 +24,8 @@ val shortNumber: Short = 15 // Short because the type is specified
 val byteNumber: Byte = 15   // Byte because the type is specified
 ```
 
+### Floating-point
+
 Floating-point types represent numbers with fractional parts. Kotlin has two such types: `Double` (64 bits) and `Float` (32 bits). These types can store only a limited number of decimal digits (~6-7 for `Float` and ~14-16 for `Double`). The `Double` type is more common in practice:
 
 ```kotlin
@@ -39,7 +43,7 @@ For type inference -> Kotlin neredeyse her zaman bir sayının tamsayı (**integ
 
 ---
 
-## Characters
+### Characters
 
 Kotlin has a `Char` type to represent various letter characters (uppercase and lowercase), digits, and other symbols. Each character is a letter character in **single quotes**. The size is similar to the `Short` type (2 bytes = 16 bits):
 
@@ -51,7 +55,7 @@ val space = ' '
 val dollar = '$'
 ```
 
-## Booleans
+### Booleans
 
 Kotlin provides a type called `Boolean`. It can store only two values: `true` and `false`. It represents only one bit of information, but its size is not precisely defined.
 
@@ -61,6 +65,8 @@ val bugFound = false
 ```
 
 ---
+
+### @Supress ile uyarilar bastirilabiliyor
 
 ```kotlin
 @Suppress("VariableNaming", "MagicNumber")  
@@ -72,13 +78,11 @@ val fraction: Float = 1.51f
 println(fraction)
 ```
 
-@Supress ile uyarilar bastirilabiliyor.
-
 `@Suppress` bir **Anotasyon (Annotation)** türüdür ve derleyiciye (compiler) veya projene entegre ettiğin kod kalite araçlarına (örneğin Ktlint, Detekt veya IDE'nin kendi analizörü) şunu söyler: _"Evet, burada kurallara aykırı bir şey yazdığımın farkındayım ama bilerek yaptım. Lütfen altını sarı/kırmızı çizmeyi bırak ve bu kural ihlalini görmezden gel."_
 
 ---
 
-Well, you may guess, how to print `$` in Kotlin. Here some ways to do it:
+### how to print `$` in Kotlin
 
 ```kotlin
 val a = 20
@@ -98,7 +102,7 @@ println("The price is \$$a.") // Output: The price is $20.
 
 ---
 
-## Functions arguments
+### Functions arguments
 
 When we want to use a function, we can **invoke (or call)** it using its name followed by parentheses. If a function takes one or more arguments (input data), they should be passed in the parentheses.
 
@@ -120,7 +124,7 @@ The result is a special value called `Unit`, which practically means `no resul
 
 ---
 
-## What is Java Scanner?
+### Java Scanner
 
 > If `Scanner` isn't needed, always use `readln()`.
 
@@ -202,9 +206,9 @@ if (scanner.hasNext()) {
 
 ---
 
-## Appending values to strings
+### Appending values to strings
 
-The `+` also works for [appending](https://hyperskill.org/learn/step/12553 "In Kotlin, the term append refers to the process of adding elements or values to a string. | The `append` function can be used to add values of different types to a string, which are then automatically converted to strings and concatenated to the target. It's important to note that an expression must start with a string for appending to work. Appending can be useful in various scenarios, such as string concatenation, logging and formatting, generating HTML or XML markup, concurrent data processing, multi-threaded text generation, and thread-safe string manipulation.") values of different types to a `String`. The value is automatically converted to a `String` and then concatenated to the target `String`:
+The `+` also works for appending values of different types to a `String`. The value is automatically converted to a `String` and then concatenated to the target `String`:
 
 ```kotlin
 val stringPlusBoolean = "abc" + 10 + true
@@ -229,7 +233,7 @@ val errorString = 10 + "abc" // an error here!
 println('1' + "2" + 3)
 ```
 
-## Repeating the string
+### Repeating the string
 
 If you need to repeat one string two or more times, then hold your loops: Kotlin provides the `repeat` function:
 
@@ -251,7 +255,7 @@ println("9".repeat(4))
 
 ---
 
-## Raw string
+### Raw string
 
 Sometimes you need some special symbols like tabs or quote marks in your string. You can do it with the help of **escape sequences**. For example:
 
@@ -305,4 +309,293 @@ print(rawString)
           
 // Ortak minimum girintinin tüm satırlarını keser.
 ```
+
+---
+
+### String templates
+
+```kotlin
+val city = "Paris"
+val temp = "24"
+
+println("The temperature in $city is $temp degrees Celsius.")
+```
+
+If we do not want to print a string, we can create a variable:
+
+```kotlin
+val value = "55"
+val currency = "dollars"
+val price = "$value $currency" // "55 dollars"
+```
+
+You can use string templates to put the result of an arbitrary **expression** in a string. To do that, include the entire expression in curly braces `{...}` after the dollar sign `$`. For example:
+
+```kotlin
+val language = "Kotlin"
+println("$language has ${language.length} letters in the name")
+```
+
+---
+
+### Kotlin has five arithmetic operators:
+
+- addition `+`
+- subtraction `-`
+- multiplication `*`
+- integer division `/`
+- modulus `%`
+
+These operators are binary, which means they take two values as operands. The operand is the value or variable the operator is being applied to. For example, in expression 1 + 3, 1 and 3 are the operands, and + is the operator.
+
+The `/` operator **divides** the integer parts of two numbers; the fractional part is discarded. You may read about modulo division in our [topic](https://hyperskill.org/learn/step/10586).
+
+```kotlin
+println(8 / 3)  // prints 2
+println(41 / 5) // prints 8
+```
+
+The `%` operator finds the **remainder** of a division:
+
+```kotlin
+println(10 % 3) // prints 1 because 10 divided by 3 leaves a remainder of 1
+println(12 % 4) // prints 0 because 12 divided by 4 leaves no remainder
+```
+
+---
+
+### Unary operators
+
+arti ve eksinin toplama ve cikarma yerine sayisi pozitif ya da negatif yapmasiyla ilgili.
+
+A unary operator takes a single value as the operand.
+
+- A **unary plus** just gives you a value. It is an optional operator, so you omit it in practice:
+
+```kotlin
+println(+5) // prints 5
+println(+(-5)) // prints -5
+```
+
+- A **unary minus** negates a value or expression:
+
+```kotlin
+println(-8)  // prints -8
+println(-(100 + 4)) // prints -104
+```
+
+### Precedence order
+
+Take a look at the precedence order of arithmetic operators, including parentheses. The list is sorted from the highest to the lowest priority.
+
+1. Parentheses;
+2. **Unary plus/minus**;
+3. Multiplication, division, and modulus;
+4. Addition and subtraction.
+
+lisede ogrendigimiz siralamaya uygun. sorun yok.
+asagilarda "Order of precedence" basliginda bunun daha kapsamlisi var.
+
+---
+
+### Compound assignment operators
+
+- `+=` assignment after addition: **A += B** equals **A = A + B**
+- `-=` assignment after subtraction: **A -= B** equals **A = A - B**
+- `*=` assignment after multiplication: **A \*= B** equals **A = A * B**
+- `/=` assignment after division: **A /= B** equals **A = A / B**
+- `%=` assignment of the remainder after division: **A %= B** equals **A = A % B**
+
+Compound assignment operators can be applied only to a variable that is already defined and cannot be used to declare a new variable:
+
+```kotlin
+var a: Int
+a += 5 // compile-time error, Variable 'a' must be initialized
+```
+
+### increment and decrement
+
+Another common operation is increasing or decreasing a number by one. Of course, you can use `+= 1` or `-= 1`, but Kotlin provides an even better way to do this: **increment** and **decrement** operations. Let's look at an example:
+
+```kotlin
+var num = 3
+num++  // 4, increment
+num--  // 3, decrement
+```
+
+---
+
+### Prefix form
+
+`++a` ya da `--a` -> her seyden once degiskenin degerini artir/azalt. ardindan siradaki islem her ne ise onu yap.
+
+The prefix form changes the value of a variable before it is used. Let's look at some examples.
+
+Prefix increment returns the incremented value:
+
+```kotlin
+var a = 10
+val b = ++a
+println(a)  // a = 11
+println(b)  // b = 11
+```
+
+Prefix decrement returns the following:
+
+```kotlin
+var a = 10
+val b = --a
+println(a)  // a = 9
+println(b)  // b = 9
+```
+
+### Postfix form
+
+`a++` ya da `a--` -> Değişkenin şu anki mevcut değerini işlemde kullan, ama bu kullanma islemi bittikten hemen sonra (bir sonraki adıma geçmeden önce) bellekteki değerini 1 artır/azalt.
+
+By contrast, the postfix form changes the value of a variable after it is used. Let's look at the examples.
+
+Postfix increment returns the value before incrementing by one:
+
+```kotlin
+var a = 10
+val b = a++
+println(a)  // a = 11
+println(b)  // b = 10
+```
+
+Similarly, postfix decrement returns the following:
+
+```kotlin
+var a = 10
+val b = a--
+println(a)  // a = 9
+println(b)  // b = 10
+```
+
+---
+
+### Order of precedence
+
+Some operations take precedence over others, that is, they are performed first. Take a look at the list of operations in decreasing order of priority:
+
+1. Parentheses ( (expr) );
+2. Postfix increment/decrement ( expr++, expr--);
+3. Unary plus/minus, prefix increment/decrement ( -expr, ++expr, --expr );
+4. Multiplication, division, and modulus ( \*, /, % );
+5. Addition and subtraction ( +, - );
+6. Assignment operations ( =, +=, -=, \*=, /=, %= ).
+
+```kotlin
+var a = 5
+val b = 9
+val c = 3
+val d = a++ + (b / 2) - c - 4
+println(d)   // this is 2
+
+// a nin kendi degeri islemde kullanilacak. satirdaki tum islemler bitip atama yapildiktan sonra da a'nin degeri bir artirilacak.
+```
+
+---
+
+### Evaluation Order
+
+yukarıdan aşağıya ve soldan sağa işleme sırası:  `Evaluation Order`
+
+Bilgisayar mühendisliğinde, özellikle JVM (Java Sanal Makinesi) tabanlı dillerde (Kotlin, Java), yan etkiler (side effects) satırın sonunu beklemez; **Alt-İfade (Sub-expression) değerlendirildiği anda** anında belleğe yazılır. Buna **Soldan Sağa Değerlendirme (Left-to-Right Evaluation)** denir.
+
+Example:
+
+Keep in mind that the two variables you are adding are the same variable, so when one is incremented, both will have a new value.
+
+```kotlin
+var num = 0 
+
+println(num++ + ++num)
+//          0  +  2  = 2
+// prints: 2
+// ilk basta anlamasi zor bir sey ama kafa yorunca anliyorsun.
+
+////
+
+var a = 10
+
+println(--a++)
+// It won't compile
+
+////
+
+var num = 0
+num = num++
+println(num)
+// prints: 0
+```
+
+Bunlari bilmek lazim ama İşlem sırasına (Evaluation Order) dayalı yan etkiler (Side effects) yaratmak, bakımı imkansız spagetti kodlara yol açar.
+
+---
+
+### Side Effects
+
+Bir önceki `num++` sorusunda "yan etki" diyerek kastettiğim şey, programlama dilleri teorisinde tam olarak **Yan Etki (Side Effect)** olarak adlandırılır.
+
+Bilgisayar bilimlerinde; bir ifadenin (expression) veya fonksiyonun, hesaplama yapıp bir sonuç döndürmek dışında **kendi yerel kapsamı (local scope) haricindeki herhangi bir durumu (state) değiştirmesine** veya dış dünyayla etkileşime girmesine **Yan Etki (Side Effect)** denir.
+
+Eğer bir fonksiyon çağırdığında sistemde "gizlice" bir şeyler değişiyorsa, orada bir yan etki vardır.
+
+#### Yan Etki Örnekleri Nelerdir?
+
+1. **Dışarıdaki bir değişkeni değiştirmek:** Az önceki `a++` veya `num++` örnekleri tam olarak buydu. O işlem sadece bir matematiksel hesaplama yapmıyor, aynı zamanda bellekteki (RAM) bir değeri fiziksel olarak değiştiriyordu.
+2. **Konsola yazı yazdırmak:** `println()` kullanmak bile bir yan etkidir. Çünkü programın dışındaki bir sisteme (Standart Çıktı Akışı - `stdout`) müdahale edersin.
+3. **Veritabanına yazmak veya Dosya okumak (I/O Operations):** Ağ (network) üzerinden bir API isteği yapmak veya diskten veri okumak.
+4. **Bir referansın içini değiştirmek:** Bir listeye `.add()` ile eleman eklemek (Mutasyon).
+    
+
+### Neden Yan Etkilerden Korkarız? (Saf Fonksiyonlar - Pure Functions)
+
+Büyük çaplı ve profesyonel projelerde (özellikle eşzamanlı/multi-threaded sistemlerde) yan etkiler, hataların (bug) bir numaralı sebebidir. Sen bir fonksiyonu hesaplama yapsın diye çağırırsın ama o gider arka planda başka bir değişkenin değerini değiştirir. Sistem aniden patlar ve hatanın nereden geldiğini bulamazsın.
+
+Bunun panzehiri **Saf Fonksiyonlardır (Pure Functions)**. Bir saf fonksiyon:
+
+1. Yan etki barındırmaz.
+2. Aynı girdiyi verdiğin sürece dünyanın sonuna kadar aynı çıktıyı üretir (Deterministic behavior).
+
+### İdiomatic Örnek
+
+Kotlin, **Fonksiyonel Programlama (Functional Programming)** paradigmalarından çok etkilenmiş modern bir dildir. Bu yüzden her fırsatta bizi `var` (değişken) yerine `val` (sabit) kullanmaya ve yan etkisiz (side-effect free) kod yazmaya zorlar.
+
+```kotlin
+// Dış dünyada yaşayan, değiştirilebilir bir Durum (State).
+var globalUserCount = 0 
+
+// KÖTÜ YAKLAŞIM: Yan Etkili (Impure) Fonksiyon
+// Bu fonksiyonu her çağırdığında hem 'globalUserCount' değişecek 
+// hem de konsola log basılacak. Sistem state'ini bozduğu için test etmesi çok zordur.
+fun calculateBonusImpure(score: Int): Int {
+    globalUserCount++ // YAN ETKİ 1: Dış state'i değiştirdi (Mutation)
+    println("Bonus hesaplanıyor...") // YAN ETKİ 2: I/O işlemi yaptı
+    return score * 10
+}
+
+// İDİOMATİK ÇÖZÜM: Saf (Pure) Fonksiyon
+// Sistemdeki hiçbir şeyi bozmaz. Dış dünyayla etkileşime girmez.
+// Sadece parametreyi alır ve sonucu döner. Test edilmesi ve paralel çalıştırılması %100 güvenlidir.
+fun calculateBonusPure(score: Int): Int {
+    return score * 10
+}
+
+fun main() {
+    // Mimari tasarımda kural şudur: Yan etkileri (veritabanı, loglama, state değişimi) 
+    // sistemin en uç noktalarına (örneğin main fonksiyonuna veya ViewModel'e) itmeli, 
+    // iş mantığını (Business Logic) ise Saf Fonksiyonlar (Pure Functions) ile yazmalısın.
+    val myScore = calculateBonusPure(5)
+    
+    // Yan etkiyi bilerek ve kontrollü bir şekilde uç noktada yapıyoruz:
+    println("Sonuç: $myScore") 
+}
+```
+
+**Değiştirilebilir Değişken Vurgusu (Mutable Variable Highlighting):** Kotlin'de bir değişkenin (var) yeniden atanması veya değiştirilmesi, sistemde bir **Yan Etki (Side Effect)** potansiyeli yaratır. IntelliJ IDEA veya Android Studio, `var` ile tanımladığın ve sonradan değerini değiştirdiğin değişkenlerin altını veya metnini varsayılan olarak hafifçe **çizgili (underlined)** veya farklı bir renkte gösterir. Bu, IDE'nin sana "Dikkat et, burada bir state değişimi ve yan etki oluyor, kodunu takip etmesi zorlaşabilir" deme şeklidir. IDE'nin bu görsel ipucunu takip ederek mimarini daha temiz (Pure) hale getirebilirsin.
+
+---
 
