@@ -61,15 +61,15 @@ JDK - the big boss, under whom JRE and development tools like compiler, debugger
 JRE - the execution environment provider, under whom JVM and the java class libraries work. When we want to run our compiled source code, we go to this person. The Java class library is a very cool person. This guy helps a lot in writing programs.
 JVM - the guy who interprets the compiled source code (i.e. bytecode) into native machine code that the computer can understand. This person acts as a mediator between computer and our bytecode. Think of him as a linguist who helps you translate what other person is speaking.
 
-![[Pasted image 20260702162454.png]]
+![565](Pasted%20image%2020260702162454.png)
 
-![[Pasted image 20260702162654.png]]
+![527](Pasted%20image%2020260702162654.png)
 
 When you run a compiled program, JRE combines the program bytecode with necessary libraries and runs the JVM, which executes the resulting bytecode.
 
 Derlenmiş bir programı çalıştırdığınızda, JRE programın bayt kodunu gerekli kütüphanelerle birleştirir ve ortaya çıkan bayt kodunu çalıştıran JVM'yi çalıştırır.
 
-![JDK JRE components](https://ucarecdn.com/33aad287-2450-4386-8639-42c7a7eac874/)
+![426](Pasted%20image%2020260706123905.png)
 
 Programları paketlemek için bir arşiv formatı.
 An archive format for packing programs: JAR
@@ -208,11 +208,12 @@ fun main() {
 }
 ```
 
-![[Pasted image 20260703134159.png]]
+![594](Pasted%20image%2020260703134159.png)
 
-Boyle de goruntulenebilir:
 
-![[Pasted image 20260703134226.png]]
+Ust taraf ide'de boyle de goruntulenebilir:
+
+![516](Pasted%20image%2020260703134226.png)
 
 ---
 
