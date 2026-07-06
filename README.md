@@ -20,6 +20,7 @@ Notları [Obsidian](https://obsidian.md) ile tutuyorum, bu yüzden repo aynı za
 - **[KeKod Course — Android Development](https://www.youtube.com/@KeKod)** — YouTube
 - **[Kotlin Docs](https://kotlinlang.org/docs/home.html)** — Resmî Kotlin dokümantasyonu
 - **[Android & Kotlin Docs](https://developer.android.com/kotlin/learn)** — Android geliştirici dokümantasyonu
+- **[Codewars](https://www.codewars.com/)** — Alıştırma / kod çözme
 
 ### Yapı
 
