@@ -452,4 +452,4 @@ obj/
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,android,androidstudio,windows,kotlin,jetbrains,intellij,java!/vault/.obsidian/
 
-kotlin-vault/.obsidian/
+.obsidian/
