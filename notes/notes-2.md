@@ -348,7 +348,7 @@ println("$language has ${language.length} letters in the name")
 
 These operators are binary, which means they take two values as operands. The operand is the value or variable the operator is being applied to. For example, in expression 1 + 3, 1 and 3 are the operands, and + is the operator.
 
-The `/` operator **divides** the integer parts of two numbers; the fractional part is discarded. You may read about modulo division in our [topic](https://hyperskill.org/learn/step/10586).
+The `/` operator **divides** the integer parts of two numbers; the fractional part is discarded. You may read about modulo division in our topic.
 
 ```kotlin
 println(8 / 3)  // prints 2
