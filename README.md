@@ -20,6 +20,13 @@ Notları [Obsidian](https://obsidian.md) ile tutuyorum, bu yüzden repo aynı za
 | [notes-2](notes/notes-2.md) | Sayı tipleri (Int/Long/Double...), Char & Boolean, Scanner, string işlemleri & template'ler, aritmetik/unary/atama operatörleri, side effects & pure functions |
 | [notes-3](notes/notes-3.md) | _(devam edecek)_ |
 
+### Kaynaklar
+
+- **[Jetbrains Academy Course — Kotlin Developer](https://hyperskill.org/courses/3-kotlin-developer)** — Hyperskill
+- **[KeKod Course — Android Development](https://www.youtube.com/@KeKod)** — YouTube
+- **[Kotlin Docs](https://kotlinlang.org/docs/home.html)** — Resmî Kotlin dokümantasyonu
+- **[Android & Kotlin Docs](https://developer.android.com/kotlin/learn)** — Android geliştirici dokümantasyonu
+
 ### Yapı
 
 ```
@@ -40,6 +47,15 @@ I write the notes in [Obsidian](https://obsidian.md), so this repo is also an Ob
 ### Contents
 
 See the table above for a per-file topic breakdown.
+
+### Sources
+
+The sources these notes are compiled from (more will be added over time):
+
+- **[Hyperskill — Kotlin Developer Course](https://hyperskill.org/courses/3-kotlin-developer)** — JetBrains Academy
+- **[KeKod — Android Development Course](https://www.youtube.com/@KeKod)** — YouTube
+- **[Kotlin Docs](https://kotlinlang.org/docs/home.html)** — Official Kotlin documentation
+- **[Android & Kotlin Docs](https://developer.android.com/kotlin/learn)** — Android developer documentation
 
 ### Structure
 
