@@ -208,3 +208,142 @@ fun main(args: Array<String>) {
 
 ---
 
+### Conversion between numeric types
+
+The three most common numeric types are: `Int`, `Long`, and `Double`. Sometimes, you may need to assign a value of one numeric type to a variable of another numeric type. In this case, you need to carry out **type conversion** by invoking a special function, for example, `toInt()`, `toLong()`, `toDouble()`, and so on.
+
+```kotlin
+val num: Int = 100
+val bigNum: Long = num.toLong() // 100
+```
+
+Normally, you can use functions `toShort()` and `toByte()` to convert something to these types. Since Kotlin 1.4, you should avoid these functions when you try to convert `Double` or `Float` type. This feature has already been removed in current releases. The main problem here is that the conversion can lead to unexpected results due to the variable's smaller size. Now, you need to convert `Double` or `Float` to `Int` and then convert the result to `Short` or `Byte`:
+
+```kotlin
+val floatNumber = 10f
+val doubleNumber = 1.0
+
+val shortNumber = floatNumber.toShort() // avoid this
+val byteNumber = doubleNumber.toByte()  // avoid this
+
+val shortNumber = floatNumber.toInt().toShort() // correct way
+val byteNumber = doubleNumber.toInt().toByte()  // correct way
+
+// zaten ide izin vermiyor buna.
+```
+
+### String conversion
+
+A string can be converted to a number or even to a boolean value but not to a single character.
+
+```kotlin
+val n = "8".toInt() // Int
+val d = "10.09".toDouble() // Double
+val b = "true".toBoolean() // Boolean
+```
+
+If you convert a string to a boolean value, no errors will occur. If the string is `"true"` (**case insensitive**), it will produce a `true` boolean value, otherwise a `false` one.
+
+```kotlin
+val b1 = "false".toBoolean() // false
+val b2 = "tru".toBoolean()   // false
+val b3 = "true".toBoolean()  // true
+val b4 = "TRUE".toBoolean()  // true
+```
+
+If you have a value of a floating type, a `Double` value, for example, you may convert it to a value of an integer type, such as `Int` or `Long`. Let's check what happens:
+
+```kotlin
+val d: Double = 12.5
+val n: Long = d.toLong() // 12
+```
+
+As you can see, the fractional part is simply dropped. So, you get a result but lose some precision. Be careful with this conversion!
+
+This conversion may truncate the value, as `Long` and `Double` can store numbers larger than the truncated `Int` number.
+
+### type overflow
+
+```kotlin
+val bigNum: Long = 100_000_000_000_000
+
+val n: Int = bigNum.toInt() // 276447232; oops
+```
+
+As a result, we receive a truncated value. This problem is known as **type overflow**. The same problem may occur if you try to convert `Int` to `Short` or `Byte`. So, if you want to convert a larger type value into a smaller one, make sure that the truncation is not going to mess up your program.
+
+The program below demonstrates the functions discussed above. It reads a string representation of a number, converts it to several other types, and then prints the results of all conversions.
+
+```kotlin
+fun main() {
+    val something = readln()
+
+    val d = something.toDouble()
+    val f = d.toFloat()
+    val i = f.toInt()
+    val b = i.toByte()
+
+    println(d)
+    println(f)
+    println(i)
+    println(b)
+    println(something.toBoolean())
+}
+```
+
+Imagine, we have the following input:
+
+```kotlin
+1000.0123456789
+```
+
+The program will output the following:
+
+```kotlin
+1000.0123456789
+1000.0123
+1000
+-24
+false
+```
+
+Let's take a closer look at the output. 
+- The number represented by a string is successfully converted to `Double`, as it has a suitable format. This number can be saved as a `Double` type safely.
+- Then the number is converted to `Float`. 
+- We see a loss here, as this type can store fewer decimal numbers. The `Int` conversion cuts the fractional part. 
+- The number 1000 is larger than the `Byte` type can store (from -128 to 127), so we have a **type overflow** (-24). 
+- The result of converting the input string to `Boolean` is `false`, because the value is not `"true"` (**case insensitive**).
+
+---
+
+### Cutting the fraction (Kata)
+
+Write a program that reads a number, cuts off its fractional part, and prints the integer part of the input number as the result.
+Use `Double` as the input type and `Long` as the result type (values may be quite large).
+**Input**: single number of type `Double`.
+**Output**: single number of type `Long`.
+
+```kotlin
+import java.util.Scanner  
+  
+fun main() {  
+	// cozum 1
+    val scanner = Scanner(System.`in`)  
+    val input = scanner.nextDouble()  
+    println(input.toLong())  
+    scanner.close()  
+	
+	// cozum 2
+    readlnOrNull()?.toDoubleOrNull()?.toLong().let(::println)  
+}
+```
+
+`let { ... }:`
+- Bu bir "Scope Function"dır. Zincirdeki bir önceki değer null değilse çalışır.
+- İçindeki değeri (yani bizim Long sayımızı) bir sonraki fonksiyona parametre olarak gönderir.
+`::println` (Function Reference):
+- let içindeki değeri doğrudan ekrana yazdırmak için kullanılan kısa bir yazımdır.
+- `let { println(it) }` yazmakla aynı şeydir.
+
+---
+

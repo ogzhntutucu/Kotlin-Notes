@@ -38,6 +38,7 @@ val fraction: Float = 1.51f  // Float because the type is specified
 
 - Integer types: Byte < Short < Int < Long
 - Floating-point types: Float < Double
+	- double: karahanli, float: kilic.
 
 For type inference -> Kotlin neredeyse her zaman bir sayının tamsayı (**integer**) olduğu sonucunu çıkaracaktır (aksini belirtmediğiniz veya ondalık sayı kullanmadığınız sürece)
 

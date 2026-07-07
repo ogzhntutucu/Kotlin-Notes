@@ -8,11 +8,11 @@ Notları [Obsidian](https://obsidian.md) ile tutuyorum, bu yüzden repo aynı za
 
 ### İçindekiler
 
-| Not | Konular |
-|-----|---------|
-| [notes-1](notes/notes-1.md) | Temel terminoloji, JDK/JRE/JVM, değişkenler (`val` / `var` / `const`), yorumlar & KDoc, kod stili, isimlendirme kuralları, type inference |
-| [notes-2](notes/notes-2.md) | Sayı tipleri (Int/Long/Double...), Char & Boolean, Scanner, string işlemleri & template'ler, aritmetik/unary/atama operatörleri, side effects & pure functions |
-| [notes-3](notes/notes-3.md) | _(devam edecek)_ |
+| Not | Topics |
+|-----|--------|
+| [notes-1](notes/notes-1.md) | Core Terminology, JDK vs JRE vs JVM, Declaring Variables (`val` / `var` / `const`), Comment Types & KDoc, Code Style (K&R Braces, Indentation), Naming Rules & Conventions, Magic Numbers, Type Inference & Type Mismatch |
+| [notes-2](notes/notes-2.md) | Numeric Types (Integer & Floating-Point), Characters & Booleans, Java Scanner, String Operations (Concatenation, Raw Strings, Templates), Operators (Arithmetic, Unary, Compound Assignment, Increment/Decrement), Precedence & Evaluation Order, Side Effects & Pure Functions |
+| [notes-3](notes/notes-3.md) | Boolean Variables & Logical Operators, Logical Operator Precedence, Numeric Type Conversion, Type Overflow, Practice Katas |
 
 ### Kaynaklar
 
