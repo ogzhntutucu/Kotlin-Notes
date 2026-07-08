@@ -347,3 +347,144 @@ fun main() {
 
 ---
 
+### Standart input & readln
+
+Here is a simple program that reads a line from the standard input and sends it to the standard output:
+
+```kotlin
+fun main() {
+    val line = readln()
+    println(line)
+}
+```
+
+### Reading multiple values in one line
+
+You can use this construction. You can read up to **four values** per line:
+
+```kotlin
+val (a, b, c, d) = readln().split(" ")
+println(a)
+println(b)
+println(c)
+println(d)
+```
+
+Here is an example of input data:
+
+```no-highlight
+Have a nice Kotlin
+```
+
+The output would be the following:
+
+```no-highlight
+Have
+a
+nice
+Kotlin
+```
+
+This construction splits the input string at spaces and stores the words in the variables.
+
+---
+
+### explicitly conversion
+
+```kotlin
+fun main() {  
+    val a: Int = 10
+    val b: Long = a  // Error: Initializer type mismatch: expected 'Long', actual 'Int'.
+    
+    // a.toLong() ile açıkça dönüştürmelisin.
+}
+```
+
+Kotlin'de bu hatayı almanızın temel sebebi, Kotlin'in örtük tip dönüşümünü (implicit conversion) desteklememesidir. Java gibi dillerin aksine Kotlin, veri kaybı olmasa bile (Int'ten Long'a geçiş gibi) bir tipi otomatik olarak başka bir tipe dönüştürmez.
+
+Bunun birkaç önemli sebebi vardır:
+1. Tip Güvenliği (Type Safety): Kotlin, kodun daha öngörülebilir olmasını ister. Küçük bir tipin büyük bir tipe otomatik atanması, bazen karmaşık aşırı yüklenmiş (overloaded) fonksiyonlarda hangi fonksiyonun çağrılacağı konusunda kafa karışıklığına yol açabilir.
+2. Nesne Yapısı: Kotlin'de Int ve Long aslında birer sınıftır. Teknik olarak Int, Long'un bir alt sınıfı değildir; bu yüzden birbirlerinin yerine doğrudan kullanılamazlar.
+
+---
+
+### Type coercion
+
+But what happens if we calculate the sum of `Int` and `Long` variables? In this case, the type is inferred from the context.
+
+In such cases, the compiler automatically sets all components (it's called **type coercion**) and the result type to the widest type in the expression. The picture below illustrates the direction of this casting:
+
+![](resources/_attachments/Pasted%20image%2020260707232408.png)
+
+Since the type of the result is wider than the previous type, there is no loss of information.
+Type coercion is rare in Kotlin. It works only with numbers and strings.
+
+from `Int` to `Long`:
+
+```kotlin
+val num: Int = 100
+val longNum: Long = 1000
+val result = num + longNum // 1100, Long
+```
+
+from `Long` to `Double`:
+
+```kotlin
+val bigNum: Long = 100000
+val doubleNum: Double = 0.0
+val bigFraction = bigNum - doubleNum // 100000.0, Double
+```
+
+`Short` and `Byte`
+
+```kotlin
+val hundred: Short = 100
+val five: Byte = 5
+val zero = hundred % five // 0, Int
+```
+
+short-short, byte-byte, short-byte kullanimlarinda sonuc Int olur. bu ikisi icin boyle bir sey var.
+
+So what should we do if we want to sum two `Byte` variables and get a `Byte` result? Well, in this case, you must manually perform type conversion:
+
+```kotlin
+val one: Byte = 1
+val five: Byte = 5
+val six = (one + five).toByte() // 6, Byte
+```
+
+Remember that `Byte` can store data in the range `-128.. 127.`
+
+Look at the example below of how type overflow works:
+
+```kotlin
+fun main() {
+    val a: Byte = 120
+    println((a + a).toByte()) // prints -16 because 120+120 > 127
+}
+```
+
+---
+
+### Initializer type mismatch (Kata)
+
+Select all **invalid** lines in the following snippet:
+
+```kotlin
+val b1: Byte = 5         // Line 1
+val b2: Byte = 2 + 3     // Line 2 - invalid
+val s1: Short = 2 + b1   // Line 3 - invalid
+val s2: Short = 10 + 3L  // Line 4 - invalid
+
+// Line 2 icin: Int + Int -> Int
+// Sen koda 2 + 3 yazdığında, derleyici arka planda bunu şu şekilde okur:
+// 2 bir Int değeridir. Üzerindeki 'plus' fonksiyonu çağrılır ve içine parametre olarak 3 gönderilir.
+2.plus(3)
+// yani 2+3 byte olmamis oldu.
+
+// Line 3 icin: Int + Byte -> Int
+// Line 4 icin: Int + Long -> Long
+```
+
+---
+
