@@ -488,3 +488,75 @@ val s2: Short = 10 + 3L  // Line 4 - invalid
 
 ---
 
+### Unsigned integers
+
+We already know that all integer types in Kotlin — `Int`, `Long`, `Byte`, and `Short` can be both positive and negative. In addition to all these integer types, Kotlin provides the ability to create **unsigned** integers – integers that can contain only non-negative values.
+
+Kotlin provides the following unsigned types:
+
+|   |   |
+|---|---|
+|**Type**|**Description**|
+|`UByte`|an unsigned 8-bit integer, ranges from 0 to 255|
+|`UShort`|an unsigned 16-bit integer, ranges from 0 to 65535|
+|`UInt`|an unsigned 32-bit integer, ranges from 0 to 4 294 967 295 (2^32-1)|
+|`ULong`|an unsigned 64-bit integer, ranges from 0 to 18 446 744 073 709 551 615 (2^64-1)|
+
+Unsigned numbers are created in the same way as any others. In order to indicate that you are creating an unsigned number, you need to add the suffix "`u`" or "`U`" to it.
+
+```kotlin
+val uByte: UByte = 5u
+val uShort: UShort = 10U
+```
+
+In this example, we create variables of specified types. But, if you don't indicate the type directly, then the compiler will use `UInt` or `ULong` depending on the size of the literal:
+
+```kotlin
+val smallSize = 100u // UInt by default
+val bigSize = 5_000_000_000u // ULong because the number doesn't fit in UInt
+```
+
+There is also a special suffix "`uL`" (or "`UL`"). If you tag a number with this suffix, then an `ULong` will be created regardless of the size of the number:
+
+```kotlin
+val smallLong = 10uL // ULong because it is marked with "uL"
+```
+
+---
+
+### Data type overflow
+
+All arithmetic operations for signed types are possible with their unsigned counterparts, except for the unary minus operation.
+
+Let's look at the results of the following code:
+
+```kotlin
+// MAX_VALUE: Int = 2147483647
+var d: Int = 2147483647
+d += 1
+println(d) // -2147483648
+```
+
+An unexpected result. A similar situation is called data type overflow. Note that these are details and it is not necessary to figure it out now. To understand what happened, imagine an empty glass into which water is poured. When the glass is full, the water overflows over the edges. The same situation happens with variables. When the variable value is close to the boundary value, there is a risk of a situation where the resulting value does not fit into the allocated memory for the variable. Overflow of the variable type leads to data loss, unexpected behavior of the program, etc.
+
+Aşağıdaki noktaları hatırlamak önemlidir: 
+- Veri tipi taşma hataları programcı hatalarıdır. 
+- Veri türü taşması durumunda program davranışı öngörülemez. 
+- Derleyici tür taşmaları için sizi uyarmayacaktır, bu nedenle değişkenler için veri türlerini doğru seçmeniz ve veri türlerinin dönüşümünü dikkatle izlemeniz gerekir.
+
+---
+
+### java'daki if ile kotlin'deki if'in farki
+
+**Kotlin'de `if` bir İfade'dir (Expression)**, yani bir değer üretir. Java'da `if` sadece bir Komut'tur (Statement) — akışı yönlendirir ama değer döndürmez. Kotlin'de ise `if`'in kendisi bir değere "eşit" olabilir.
+
+`return`'ü iki yere de yazmak yerine, `if`'in bir expression olmasından yararlanıp **tek bir `return`** yazabilirsin. `if`'in ürettiği değeri döndürürsün:
+
+```kotlin
+// return "yukarı kaldırıldı" (lifted out): artık if'in ürettiği sonucu döndürüyoruz
+return if (valueN % 2 == 0) valueN / 2 else (valueN + 1) / 2
+```
+
+"Lifted out of if" derken kastedilen bu: `return` kelimesini `if`'in **dışına** çıkardık.
+
+---

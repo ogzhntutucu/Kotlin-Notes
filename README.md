@@ -12,7 +12,7 @@ Notları [Obsidian](https://obsidian.md) ile tutuyorum, bu yüzden repo aynı za
 |-----|--------|
 | [notes-1](notes/notes-1.md) | Core Terminology, JDK vs JRE vs JVM, Declaring Variables (`val` / `var` / `const`), Comment Types & KDoc, Code Style (K&R Braces, Indentation), Naming Rules & Conventions, Magic Numbers, Type Inference & Type Mismatch |
 | [notes-2](notes/notes-2.md) | Numeric Types (Integer & Floating-Point), Characters & Booleans, Java Scanner, String Operations (Concatenation, Raw Strings, Templates), Operators (Arithmetic, Unary, Compound Assignment, Increment/Decrement), Precedence & Evaluation Order, Side Effects & Pure Functions |
-| [notes-3](notes/notes-3.md) | Boolean Variables & Logical Operators, Logical Operator Precedence, Numeric Type Conversion, Type Overflow, Practice Katas |
+| [notes-3](notes/notes-3.md) | Boolean Variables & Logical Operators, Logical Operator Precedence, Standard Input (`readln`, Reading Multiple Values), Numeric & String Type Conversion, Type Coercion, Unsigned Integers & Data Type Overflow, `if` in Kotlin vs. Java, Practice Katas |
 
 ### Kaynaklar
 
@@ -22,11 +22,19 @@ Notları [Obsidian](https://obsidian.md) ile tutuyorum, bu yüzden repo aynı za
 - **[Android & Kotlin Docs](https://developer.android.com/kotlin/learn)** — Android geliştirici dokümantasyonu
 - **[Codewars](https://www.codewars.com/)** — Alıştırma / kod çözme
 
+### Kotlin Mentor (Claude Project)
+
+Kurs sırasında anlamadığım konularda yapay zekadan yardım alıyorum. Bunun için Claude'da bir "Kotlin Mentor" projesi oluşturdum ve bu repoyu projeye bağladım; böylece her sohbette güncel notlarıma erişip gerektiğinde referans verebiliyor. Projeye özel yazdığım talimatlar ve resmi Kotlin style guide, [others/claude-kotlin-mentor-docs/](others/claude-kotlin-mentor-docs/) altında tutuluyor:
+
+- **[instructions.md](others/claude-kotlin-mentor-docs/instructions.md)** — Projenin "system prompt"u: seviyem, hedeflerim, dil kuralları, öğretim tarzı tercihlerim
+- **[kotlin-style-guide.md](others/claude-kotlin-mentor-docs/kotlin-style-guide.md)** — Google/Android'in resmî Kotlin stil rehberi (idiomatic yazım için referans kaynak)
+
 ### Yapı
 
 ```
-notes/                  # Markdown notlar
-resources/_attachments/ # Notlarda kullanılan görseller
+notes/                            # Markdown notlar
+resources/_attachments/           # Notlarda kullanılan görseller
+others/claude-kotlin-mentor-docs/ # Kotlin Mentor (Claude Project) yapılandırma dosyaları
 ```
 
 ---
