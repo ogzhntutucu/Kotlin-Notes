@@ -34,7 +34,9 @@ println(readln().toBoolean()) // false
 println(readln().toBoolean()) // false
 ```
 
-Since Kotlin 1.5, you can use other functions to convert `String` to `Boolean`. The function `toBooleanStrict()` returns `true` if the string is equal to the word "true", case sensitive, and `false` if the string is equal to "false"; otherwise, your program will crash with an `java.lang.IllegalArgumentException`. The function `toBooleanStrictOrNull()` returns `true` if the string is equal to the word "true", case sensitive, and `false` if the string is equal to "false"; otherwise, it returns a special value `null`. We will discuss it later.
+Since Kotlin 1.5, you can use other functions to convert `String` to `Boolean`. The function `toBooleanStrict()` returns `true` if the string is equal to the word "true", case sensitive, and `false` if the string is equal to "false"; otherwise, your program will crash with an `java.lang.IllegalArgumentException`. 
+
+The function `toBooleanStrictOrNull()` returns `true` if the string is equal to the word "true", case sensitive, and `false` if the string is equal to "false"; otherwise, it returns a special value `null`.
 
 ```kotlin
 println("true".toBooleanStrict())     // true
@@ -49,7 +51,7 @@ println("faLse".toBooleanStrictOrNull()) // null
 
 ---
 
-### logical operators
+### Logical operators
 
 Boolean type variables construct logical statements with the help of logical operators. Kotlin has four logical operators: **NOT**, **AND**, **OR**, and **XOR:**
 
@@ -78,7 +80,7 @@ val b3 = true || false  // true
 val b4 = true || true   // true
 ```
 
-- XOR (exclusive OR) is a binary operator that returns `true` if the Boolean operands have different values. Otherwise, it is `false`.
+XOR (exclusive OR) is a binary operator that returns `true` if the Boolean operands have different values. Otherwise, it is `false`.
 
 ```kotlin
 val b1 = false xor false // false
@@ -232,6 +234,8 @@ val byteNumber = doubleNumber.toInt().toByte()  // correct way
 // zaten ide izin vermiyor buna.
 ```
 
+---
+
 ### String conversion
 
 A string can be converted to a number or even to a boolean value but not to a single character.
@@ -262,7 +266,9 @@ As you can see, the fractional part is simply dropped. So, you get a result but 
 
 This conversion may truncate the value, as `Long` and `Double` can store numbers larger than the truncated `Int` number.
 
-### type overflow
+---
+
+### Type overflow
 
 ```kotlin
 val bigNum: Long = 100_000_000_000_000
@@ -358,7 +364,7 @@ fun main() {
 }
 ```
 
-### Reading multiple values in one line
+#### Reading multiple values in one line
 
 You can use this construction. You can read up to **four values** per line:
 
@@ -389,7 +395,7 @@ This construction splits the input string at spaces and stores the words in the 
 
 ---
 
-### explicitly conversion
+### Explicitly conversion
 
 ```kotlin
 fun main() {  
@@ -546,7 +552,7 @@ Aşağıdaki noktaları hatırlamak önemlidir:
 
 ---
 
-### java'daki if ile kotlin'deki if'in farki
+### Java'daki if ile kotlin'deki if'in farki
 
 **Kotlin'de `if` bir İfade'dir (Expression)**, yani bir değer üretir. Java'da `if` sadece bir Komut'tur (Statement) — akışı yönlendirir ama değer döndürmez. Kotlin'de ise `if`'in kendisi bir değere "eşit" olabilir.
 

@@ -128,7 +128,7 @@ println('A' < 'a')  // true because capital Latin letters are placed before lowe
 
 ---
 
-### escape sequences
+### Escape sequences
 
 - `'\n'` is the newline character;
 - `'\t'` is the tab character;

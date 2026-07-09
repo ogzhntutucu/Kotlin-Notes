@@ -210,7 +210,6 @@ fun main() {
 
 ![594](../resources/_attachments/Pasted%20image%2020260703134159.png)
 
-
 Ust taraf ide'de boyle de goruntulenebilir:
 
 ![516](../resources/_attachments/Pasted%20image%2020260703134226.png)
@@ -260,7 +259,7 @@ yani aslinda tab tusuna bastigimizda IDE koda tab karakterini degil 4 boslugu in
 
 ---
 
-### experimental bir degisken adi kullanimi
+### Experimental bir degisken adi kullanimi
 
 ```kotlin
 `name with space`
@@ -334,7 +333,7 @@ Bunun gibi sayilara magic number deniyor. ama sadece sayilar icin degil her turl
 
 ---
 
-### type inference
+### Type inference
 
 In this case, Kotlin knows that `text` is a string and `n` is a number. Kotlin determines the types of both variables automatically. This mechanism is called **type inference**.
 

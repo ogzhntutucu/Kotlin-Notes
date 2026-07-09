@@ -24,6 +24,8 @@ val shortNumber: Short = 15 // Short because the type is specified
 val byteNumber: Byte = 15   // Byte because the type is specified
 ```
 
+---
+
 ### Floating-point
 
 Floating-point types represent numbers with fractional parts. Kotlin has two such types: `Double` (64 bits) and `Float` (32 bits). These types can store only a limited number of decimal digits (~6-7 for `Float` and ~14-16 for `Double`). The `Double` type is more common in practice:
@@ -67,7 +69,7 @@ val bugFound = false
 
 ---
 
-### @Supress ile uyarilar bastirilabiliyor
+### @Supress ile uyari bastirmaca
 
 ```kotlin
 @Suppress("VariableNaming", "MagicNumber")  
@@ -83,7 +85,7 @@ println(fraction)
 
 ---
 
-### how to print `$` in Kotlin
+### How to print `$` in Kotlin
 
 ```kotlin
 val a = 20
@@ -166,6 +168,10 @@ Ok, now we've read the data and don't need `Scanner` anymore. When we used `r
 scanner.close()
 ```
 
+---
+
+### useDelimeter() in Scanner
+
 One important thing: we can input data directly in `Scanner`. Let's see:
 
 ```kotlin
@@ -233,6 +239,8 @@ val errorString = 10 + "abc" // an error here!
 // char ile de baslarsa olur. sikinti olmaz. char ya da string disindakilerde sikinti olur.
 println('1' + "2" + 3)
 ```
+
+---
 
 ### Repeating the string
 
@@ -450,6 +458,8 @@ println(a)  // a = 9
 println(b)  // b = 9
 ```
 
+---
+
 ### Postfix form
 
 `a++` ya da `a--` -> Değişkenin şu anki mevcut değerini işlemde kullan, ama bu kullanma islemi bittikten hemen sonra (bir sonraki adıma geçmeden önce) bellekteki değerini 1 artır/azalt.
@@ -550,9 +560,10 @@ Eğer bir fonksiyon çağırdığında sistemde "gizlice" bir şeyler değişiyo
 2. **Konsola yazı yazdırmak:** `println()` kullanmak bile bir yan etkidir. Çünkü programın dışındaki bir sisteme (Standart Çıktı Akışı - `stdout`) müdahale edersin.
 3. **Veritabanına yazmak veya Dosya okumak (I/O Operations):** Ağ (network) üzerinden bir API isteği yapmak veya diskten veri okumak.
 4. **Bir referansın içini değiştirmek:** Bir listeye `.add()` ile eleman eklemek (Mutasyon).
-    
 
-### Neden Yan Etkilerden Korkarız? (Saf Fonksiyonlar - Pure Functions)
+---
+
+### Saf Fonksiyonlar - Pure Functions
 
 Büyük çaplı ve profesyonel projelerde (özellikle eşzamanlı/multi-threaded sistemlerde) yan etkiler, hataların (bug) bir numaralı sebebidir. Sen bir fonksiyonu hesaplama yapsın diye çağırırsın ama o gider arka planda başka bir değişkenin değerini değiştirir. Sistem aniden patlar ve hatanın nereden geldiğini bulamazsın.
 
@@ -561,7 +572,7 @@ Bunun panzehiri **Saf Fonksiyonlardır (Pure Functions)**. Bir saf fonksiyon:
 1. Yan etki barındırmaz.
 2. Aynı girdiyi verdiğin sürece dünyanın sonuna kadar aynı çıktıyı üretir (Deterministic behavior).
 
-### İdiomatic Örnek
+#### İdiomatic Örnek
 
 Kotlin, **Fonksiyonel Programlama (Functional Programming)** paradigmalarından çok etkilenmiş modern bir dildir. Bu yüzden her fırsatta bizi `var` (değişken) yerine `val` (sabit) kullanmaya ve yan etkisiz (side-effect free) kod yazmaya zorlar.
 
