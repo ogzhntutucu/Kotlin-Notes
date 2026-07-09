@@ -2,6 +2,7 @@
 #### @ogzhntutucu
 
 ---
+## 1.1
 ### Temel Terminoloji
 
 - **Program (Program):** Bilgisayara ne yapması gerektiğini söyleyen komutlar dizisidir. İşlemlerin yukarıdan aşağıya, yazıldıkları sırayla tahmin edilebilir bir şekilde çalıştırılmasına **Sıralı Akış (Sequential Flow)** denir.
@@ -15,7 +16,7 @@
 - **Kotlin'in Kalbi: Giriş Noktası (Entry Point):** İşletim sistemi veya Java Sanal Makinesi (JVM), programını başlattığında ilk olarak nereye bakacağını bilmek zorundadır. Kotlin'de bu **Giriş Noktası (Entry Point)**, `main` adındaki özel fonksiyondur.
 
 ---
-
+## 1.2
 ### Some Keybindings
 
 - _Ctrl + J_
@@ -53,7 +54,7 @@
 	- Satiri sil, imleci bir alta tasi
 
 ---
-
+## 1.3
 ### JDK - JRE - JVM etc.
 
 Think of them as people...
@@ -75,7 +76,7 @@ Programları paketlemek için bir arşiv formatı.
 An archive format for packing programs: JAR
 
 ---
-
+## 1.4
 ### Declaring variables
 
 Before you can start using a variable, you must declare it. To declare a variable, Kotlin provides two keywords:
@@ -87,7 +88,7 @@ Before you can start using a variable, you must declare it. To declare a variabl
 yani const, val ile birlikte kullanilir.
 
 ---
-
+## 1.5
 ### var tip engeli
 
 Ancak değişkenler (var anahtar sözcüğü ile bildirilenler) için bir kısıtlama vardır. Değerlerini yeniden atarken, yalnızca ilk değerle aynı türden yeni değerleri kullanabilirsiniz. Yani aşağıdaki kod parçası doğru değil:
@@ -103,7 +104,7 @@ number = "twelve" // an error here!
 Please remember this restriction!
 
 ---
-
+## 1.6
 ### val listeye deger atanabilme durumu
 
 It is always possible to change the internal state of a `val` variable: while it is prohibited to reassign the variable, its content can be modified in some other ways.
@@ -128,7 +129,7 @@ val -> değişkene yeniden değer atanmasını yasaklar, ancak nesnenin iç duru
 Referans (listenin bellekteki adresi) değişmez, sadece o adresteki objenin "iç durumu (internal state)" güncellenir.
 
 ---
-
+## 1.7
 ### const val
 
 There are some restrictions on when the `const` modifier can be applied. First, it can only be used with a `String` or a primitive type variable:
@@ -161,8 +162,8 @@ val userFirstName: String
 ```
 
 ---
-
-### comment types
+## 1.8
+### Comment types
 
 ```kotlin
 // a comment       // end-of-line comment
@@ -173,7 +174,7 @@ val userFirstName: String
 ```
 
 ---
-
+## 1.9
 ### KDoc
 
 ```kotlin
@@ -215,7 +216,7 @@ Ust taraf ide'de boyle de goruntulenebilir:
 ![516](../resources/_attachments/Pasted%20image%2020260703134226.png)
 
 ---
-
+## 1.10
 ### K&R Stili Parantezler
 
 Bilgisayar mühendisliği literatüründe bu parantez kullanım stiline **Kernighan and Ritchie (K&R) Style** veya halk arasında **Mısır Parantezleri (Egyptian Brackets)** denir. Kotlin stil rehberi, dolu bloklar `(Blocks)` için bu stilin kullanılmasını emreder: Açılış parantezinden önce satır sonu (line break) olmaz, parantez açıldıktan sonra alt satıra geçilir ve kapanış parantezi ayrı bir satırda bloğu bitirir.
@@ -236,7 +237,7 @@ fun main() {
 ```
 
 ---
-
+## 1.11
 ### Tab ( \t ) degil 4 bosluk kullaniriz
 
 ```kotlin
@@ -258,7 +259,7 @@ fun main() {
 yani aslinda tab tusuna bastigimizda IDE koda tab karakterini degil 4 boslugu inject eder. bu sayede evrensel kod kuralina uyulmus olur. eger herkes tab kullansaydi, idelerin bilgisayarlarin yazilimcilarin kararlarina gore farkli tab buyuklukleri olurdu ve kodlar tutarli olmazdi.
 
 ---
-
+## 1.12
 ### Experimental bir degisken adi kullanimi
 
 ```kotlin
@@ -274,7 +275,7 @@ println(`good name`)
 Kotlin: Language version 2.3 is experimental, there are no backwards compatibility guarantees for new language and library features
 
 ---
-
+## 1.13
 ### Naming - rules and conventions
 
 Kotlin has several naming **rules**:
@@ -292,7 +293,7 @@ Kotlin also provides the following **conventions**:
 - Choose meaningful names for your variables, for example, `score` makes more sense than `s`, although they are both valid.
 
 ---
-
+## 1.14
 ### Magic Numbers and Const Val
 
 Create a constant, give it a meaningful name, and replace the number with it.
@@ -315,7 +316,7 @@ Bu sekilde sabitligi kesin olan degerleri kendi basina birakma, bir isim ver ve 
 Bunun gibi sayilara magic number deniyor. ama sadece sayilar icin degil her turlu deger icin dusunebilirsin.
 
 ---
-
+## 1.15
 ### Case names
 
 - UPPERCASE
@@ -332,7 +333,7 @@ Bunun gibi sayilara magic number deniyor. ama sadece sayilar icin degil her turl
 - camel-Kebab-Case
 
 ---
-
+## 1.16
 ### Type inference
 
 In this case, Kotlin knows that `text` is a string and `n` is a number. Kotlin determines the types of both variables automatically. This mechanism is called **type inference**.
@@ -357,7 +358,7 @@ greeting = "hello"
 ```
 
 ---
-
+## 1.17
 ### Type mismatch
 
 One of the most important functions of data types is to protect you from assigning an unsuitable value to a variable. Take a look at an example of code that doesn't work:

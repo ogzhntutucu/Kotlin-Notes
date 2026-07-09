@@ -2,6 +2,7 @@
 #### @ogzhntutucu
 
 ---
+## 4.1
 ### Comparing integer numbers
 
 Let's take a look at the example below. First, Kotlin calculates two sums, and after that, they are compared with the `>` operator:
@@ -23,7 +24,7 @@ println(one == zero.toLong()) // OK, prints false
 ```
 
 ---
-
+## 4.2
 ### Joining relational operations
 
 Kotlin cannot process expressions like:
@@ -39,7 +40,7 @@ number > 100 && number < 200
 ```
 
 ---
-
+## 4.3
 ### Unicode
 
 Unicode is standard in form of a table that defines the mapping between symbols and numbers.
@@ -55,7 +56,7 @@ Unicode consists of two parts: **Universal character set, UCS,** and **Univer
 **UTF-8** is the most commonly used encoding in the world as around 94% of the Internet is encoded in UTF-8. UTF-8 uses from 1 to 4 bytes per code point and is capable of representing all code points of the Unicode. UTF-8 is also backward compatible with ASCII. UTF-16 is similar and the difference between the two is mostly technical. You could use UTF-16, of course, but we recommend sticking to UTF-8 like most of the Internet.
 
 ---
-
+## 4.4
 ### Chars
 
 A character can also be represented by its hexadecimal code in the Unicode table. The code starts with `\u`:
@@ -127,7 +128,7 @@ println('A' < 'a')  // true because capital Latin letters are placed before lowe
 ```
 
 ---
-
+## 4.5
 ### Escape sequences
 
 - `'\n'` is the newline character;
@@ -138,7 +139,7 @@ println('A' < 'a')  // true because capital Latin letters are placed before lowe
 - `'\"'` is the double quote mark.
 
 ---
-
+## 4.6
 ### Processing characters
 
 There's a variety of useful functions to work with characters. You can use these functions instead of dealing with character codes.
@@ -177,7 +178,7 @@ val capitalE = small.uppercaseChar()   // 'E'
 ```
 
 ---
-
+## 4.7
 ### Input and output streams
 
 ```kotlin
@@ -203,4 +204,49 @@ fun main() {
 There is no "first read input, then output". Input and output streams are independent. Your programs reads the input from the platform, and the platform simply reads its output.
 
 ---
+## 4.8
+### Working with strings
 
+Kotlin provides several convenient ways to access the first and the last character of a string:
+
+```kotlin
+println(greeting.first())   // 'H'
+println(greeting.last())    // 'o'
+println(greeting.lastIndex) // 4
+```
+
+You can use the length and check if it's greater than 0. But a much more elegant way is using the function `isEmpty()`:
+
+```kotlin
+val emptyString = ""
+println(emptyString.length == 0) //true
+println(emptyString.isEmpty()) //true
+```
+
+---
+## 4.9
+### Immutability
+
+Strings are **immutable**, meaning that once created, the string stays the same. You cannot modify an element of a string. So, the example below would not work:
+
+```kotlin
+val valString = "string"
+valString[3] = 'o' // an error here!
+var varString = "string"
+varString[3] = 'o' // an error here too!
+```
+
+If you need to change the string, you can reassign it:
+
+```kotlin
+var varString = "string"
+varString = "strong" // legal
+val valString = "string"
+valString = "strong" // error, you cannot reassign val
+```
+
+Actually, we do not modify the stored value in the `varString` variable. Instead, we assign a new value to it. So, it is absolutely legal. This is one of the ways to work with strings. If you need to modify a string, just create a new one.
+
+---
+## 4.10
+### 

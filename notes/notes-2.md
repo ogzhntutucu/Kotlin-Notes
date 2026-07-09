@@ -2,6 +2,7 @@
 #### @ogzhntutucu
 
 ---
+## 2.1
 ### Integer Numbers
 
 **Integer numbers** (0, 1, 2, ...) are represented by the following four types: `Long`, `Int`, `Short`, `Byte` (from the largest to the smallest). These types have different sizes and may represent different ranges of values. The integer type range can be calculated as −(2n−1) to (2n−1)−1, where **n** is the number of bits. The range includes 0, that's why we subtract 1 from the upper bound.
@@ -25,7 +26,7 @@ val byteNumber: Byte = 15   // Byte because the type is specified
 ```
 
 ---
-
+## 2.2
 ### Floating-point
 
 Floating-point types represent numbers with fractional parts. Kotlin has two such types: `Double` (64 bits) and `Float` (32 bits). These types can store only a limited number of decimal digits (~6-7 for `Float` and ~14-16 for `Double`). The `Double` type is more common in practice:
@@ -45,7 +46,7 @@ val fraction: Float = 1.51f  // Float because the type is specified
 For type inference -> Kotlin neredeyse her zaman bir sayının tamsayı (**integer**) olduğu sonucunu çıkaracaktır (aksini belirtmediğiniz veya ondalık sayı kullanmadığınız sürece)
 
 ---
-
+## 2.3
 ### Characters
 
 Kotlin has a `Char` type to represent various letter characters (uppercase and lowercase), digits, and other symbols. Each character is a letter character in **single quotes**. The size is similar to the `Short` type (2 bytes = 16 bits):
@@ -68,7 +69,7 @@ val bugFound = false
 ```
 
 ---
-
+## 2.4
 ### @Supress ile uyari bastirmaca
 
 ```kotlin
@@ -84,7 +85,7 @@ println(fraction)
 `@Suppress` bir **Anotasyon (Annotation)** türüdür ve derleyiciye (compiler) veya projene entegre ettiğin kod kalite araçlarına (örneğin Ktlint, Detekt veya IDE'nin kendi analizörü) şunu söyler: _"Evet, burada kurallara aykırı bir şey yazdığımın farkındayım ama bilerek yaptım. Lütfen altını sarı/kırmızı çizmeyi bırak ve bu kural ihlalini görmezden gel."_
 
 ---
-
+## 2.5
 ### How to print `$` in Kotlin
 
 ```kotlin
@@ -104,7 +105,7 @@ println("The price is \$$a.") // Output: The price is $20.
 ```
 
 ---
-
+## 2.6
 ### Functions arguments
 
 When we want to use a function, we can **invoke (or call)** it using its name followed by parentheses. If a function takes one or more arguments (input data), they should be passed in the parentheses.
@@ -126,7 +127,7 @@ println(result) // kotlin.Unit
 The result is a special value called `Unit`, which practically means `no result`. When your function returns nothing, it means it returns `Unit`, that's all you need to understand for now. If you're coming from another language like C or Java, you can think of it as `Void`.
 
 ---
-
+## 2.7
 ### Java Scanner
 
 > If `Scanner` isn't needed, always use `readln()`.
@@ -169,7 +170,7 @@ scanner.close()
 ```
 
 ---
-
+## 2.8
 ### useDelimeter() in Scanner
 
 One important thing: we can input data directly in `Scanner`. Let's see:
@@ -212,7 +213,7 @@ if (scanner.hasNext()) {
 ```
 
 ---
-
+## 2.9
 ### Appending values to strings
 
 The `+` also works for appending values of different types to a `String`. The value is automatically converted to a `String` and then concatenated to the target `String`:
@@ -241,7 +242,7 @@ println('1' + "2" + 3)
 ```
 
 ---
-
+## 2.10
 ### Repeating the string
 
 If you need to repeat one string two or more times, then hold your loops: Kotlin provides the `repeat` function:
@@ -263,7 +264,7 @@ println("9".repeat(4))
 ```
 
 ---
-
+## 2.11
 ### Raw string
 
 Sometimes you need some special symbols like tabs or quote marks in your string. You can do it with the help of **escape sequences**. For example:
@@ -320,7 +321,7 @@ print(rawString)
 ```
 
 ---
-
+## 2.12
 ### String templates
 
 ```kotlin
@@ -346,7 +347,7 @@ println("$language has ${language.length} letters in the name")
 ```
 
 ---
-
+## 2.13
 ### Kotlin has five arithmetic operators:
 
 - addition `+`
@@ -372,7 +373,7 @@ println(12 % 4) // prints 0 because 12 divided by 4 leaves no remainder
 ```
 
 ---
-
+## 2.14
 ### Unary operators
 
 arti ve eksinin toplama ve cikarma yerine sayisi pozitif ya da negatif yapmasiyla ilgili.
@@ -406,7 +407,7 @@ lisede ogrendigimiz siralamaya uygun. sorun yok.
 asagilarda "Order of precedence" basliginda bunun daha kapsamlisi var.
 
 ---
-
+## 2.15
 ### Compound assignment operators
 
 - `+=` assignment after addition: **A += B** equals **A = A + B**
@@ -422,7 +423,7 @@ var a: Int
 a += 5 // compile-time error, Variable 'a' must be initialized
 ```
 
-### increment and decrement
+### Increment and decrement
 
 Another common operation is increasing or decreasing a number by one. Of course, you can use `+= 1` or `-= 1`, but Kotlin provides an even better way to do this: **increment** and **decrement** operations. Let's look at an example:
 
@@ -433,7 +434,7 @@ num--  // 3, decrement
 ```
 
 ---
-
+## 2.16
 ### Prefix form
 
 `++a` ya da `--a` -> her seyden once degiskenin degerini artir/azalt. ardindan siradaki islem her ne ise onu yap.
@@ -459,7 +460,7 @@ println(b)  // b = 9
 ```
 
 ---
-
+## 2.17
 ### Postfix form
 
 `a++` ya da `a--` -> Değişkenin şu anki mevcut değerini işlemde kullan, ama bu kullanma islemi bittikten hemen sonra (bir sonraki adıma geçmeden önce) bellekteki değerini 1 artır/azalt.
@@ -485,7 +486,7 @@ println(b)  // b = 10
 ```
 
 ---
-
+## 2.18
 ### Order of precedence
 
 Some operations take precedence over others, that is, they are performed first. Take a look at the list of operations in decreasing order of priority:
@@ -508,7 +509,7 @@ println(d)   // this is 2
 ```
 
 ---
-
+## 2.19
 ### Evaluation Order
 
 yukarıdan aşağıya ve soldan sağa işleme sırası:  `Evaluation Order`
@@ -545,7 +546,7 @@ println(num)
 Bunlari bilmek lazim ama İşlem sırasına (Evaluation Order) dayalı yan etkiler (Side effects) yaratmak, bakımı imkansız spagetti kodlara yol açar.
 
 ---
-
+## 2.20
 ### Side Effects
 
 Bir önceki `num++` sorusunda "yan etki" diyerek kastettiğim şey, programlama dilleri teorisinde tam olarak **Yan Etki (Side Effect)** olarak adlandırılır.
@@ -562,7 +563,7 @@ Eğer bir fonksiyon çağırdığında sistemde "gizlice" bir şeyler değişiyo
 4. **Bir referansın içini değiştirmek:** Bir listeye `.add()` ile eleman eklemek (Mutasyon).
 
 ---
-
+## 2.21
 ### Saf Fonksiyonlar - Pure Functions
 
 Büyük çaplı ve profesyonel projelerde (özellikle eşzamanlı/multi-threaded sistemlerde) yan etkiler, hataların (bug) bir numaralı sebebidir. Sen bir fonksiyonu hesaplama yapsın diye çağırırsın ama o gider arka planda başka bir değişkenin değerini değiştirir. Sistem aniden patlar ve hatanın nereden geldiğini bulamazsın.

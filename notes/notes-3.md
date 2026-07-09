@@ -2,6 +2,7 @@
 #### @ogzhntutucu
 
 ---
+## 3.1
 ### Boolean variables
 
 You cannot assign an integer value to a Boolean variable. In Kotlin, `0` is not the same as `false`.
@@ -50,7 +51,7 @@ println("faLse".toBooleanStrictOrNull()) // null
 ```
 
 ---
-
+## 3.2
 ### Logical operators
 
 Boolean type variables construct logical statements with the help of logical operators. Kotlin has four logical operators: **NOT**, **AND**, **OR**, and **XOR:**
@@ -96,6 +97,7 @@ mantiksal operatorleri TRUE uzerinden aklinda tut:
 - `||` OR -> iki degerden herhangi birinin true olmasi yeterli.
 
 ---
+## 3.3
 ### Logical operator precedence
 
 Take a look at the **precedence** of logical operations in Kotlin below. Precedence determines how other variables are grouped in the absence of parentheses:
@@ -155,7 +157,7 @@ fun main() {
 ```
 
 ---
-
+## 3.4
 ### Go to the store (Kata)
 
 Imagine you need to determine whether you should go to a store. There are two variables to help you make a choice:
@@ -184,7 +186,7 @@ fun shouldGo(isClosingSoon: Boolean, isNear: Boolean): Boolean =
 |**true** (Kapanıyor!)|**false** (Uzak)|false|**false**|❌ Hayır (Hem kapanıyor hem uzak, yetişemem)|
 
 ---
-
+## 3.5
 ### Reverse a user-input string (Kata)
 
 Write a program in Kotlin that reads a string and returns the reversed version of that string. Your program should interactively ask the user for a single string and should display the reversed string as the output.
@@ -209,7 +211,7 @@ fun main(args: Array<String>) {
 ```
 
 ---
-
+## 3.6
 ### Conversion between numeric types
 
 The three most common numeric types are: `Int`, `Long`, and `Double`. Sometimes, you may need to assign a value of one numeric type to a variable of another numeric type. In this case, you need to carry out **type conversion** by invoking a special function, for example, `toInt()`, `toLong()`, `toDouble()`, and so on.
@@ -235,7 +237,7 @@ val byteNumber = doubleNumber.toInt().toByte()  // correct way
 ```
 
 ---
-
+## 3.7
 ### String conversion
 
 A string can be converted to a number or even to a boolean value but not to a single character.
@@ -267,7 +269,7 @@ As you can see, the fractional part is simply dropped. So, you get a result but 
 This conversion may truncate the value, as `Long` and `Double` can store numbers larger than the truncated `Int` number.
 
 ---
-
+## 3.8
 ### Type overflow
 
 ```kotlin
@@ -321,7 +323,7 @@ Let's take a closer look at the output.
 - The result of converting the input string to `Boolean` is `false`, because the value is not `"true"` (**case insensitive**).
 
 ---
-
+## 3.9
 ### Cutting the fraction (Kata)
 
 Write a program that reads a number, cuts off its fractional part, and prints the integer part of the input number as the result.
@@ -352,7 +354,7 @@ fun main() {
 - `let { println(it) }` yazmakla aynı şeydir.
 
 ---
-
+## 3.10
 ### Standart input & readln
 
 Here is a simple program that reads a line from the standard input and sends it to the standard output:
@@ -394,7 +396,7 @@ Kotlin
 This construction splits the input string at spaces and stores the words in the variables.
 
 ---
-
+## 3.11
 ### Explicitly conversion
 
 ```kotlin
@@ -413,7 +415,7 @@ Bunun birkaç önemli sebebi vardır:
 2. Nesne Yapısı: Kotlin'de Int ve Long aslında birer sınıftır. Teknik olarak Int, Long'un bir alt sınıfı değildir; bu yüzden birbirlerinin yerine doğrudan kullanılamazlar.
 
 ---
-
+## 3.12
 ### Type coercion
 
 But what happens if we calculate the sum of `Int` and `Long` variables? In this case, the type is inferred from the context.
@@ -471,7 +473,7 @@ fun main() {
 ```
 
 ---
-
+## 3.13
 ### Initializer type mismatch (Kata)
 
 Select all **invalid** lines in the following snippet:
@@ -493,7 +495,7 @@ val s2: Short = 10 + 3L  // Line 4 - invalid
 ```
 
 ---
-
+## 3.14
 ### Unsigned integers
 
 We already know that all integer types in Kotlin — `Int`, `Long`, `Byte`, and `Short` can be both positive and negative. In addition to all these integer types, Kotlin provides the ability to create **unsigned** integers – integers that can contain only non-negative values.
@@ -529,7 +531,7 @@ val smallLong = 10uL // ULong because it is marked with "uL"
 ```
 
 ---
-
+## 3.15
 ### Data type overflow
 
 All arithmetic operations for signed types are possible with their unsigned counterparts, except for the unary minus operation.
@@ -551,7 +553,7 @@ Aşağıdaki noktaları hatırlamak önemlidir:
 - Derleyici tür taşmaları için sizi uyarmayacaktır, bu nedenle değişkenler için veri türlerini doğru seçmeniz ve veri türlerinin dönüşümünü dikkatle izlemeniz gerekir.
 
 ---
-
+## 3.16
 ### Java'daki if ile kotlin'deki if'in farki
 
 **Kotlin'de `if` bir İfade'dir (Expression)**, yani bir değer üretir. Java'da `if` sadece bir Komut'tur (Statement) — akışı yönlendirir ama değer döndürmez. Kotlin'de ise `if`'in kendisi bir değere "eşit" olabilir.
