@@ -1,5 +1,5 @@
 # Kotlin Notes - 2
-#### @ogzhntutucu
+#### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)
 
 ---
 ## 2.1

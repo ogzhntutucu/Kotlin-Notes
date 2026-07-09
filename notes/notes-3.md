@@ -1,5 +1,5 @@
 # Kotlin Notes - 3
-#### @ogzhntutucu
+#### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)
 
 ---
 ## 3.1
@@ -422,7 +422,7 @@ But what happens if we calculate the sum of `Int` and `Long` variables? In t
 
 In such cases, the compiler automatically sets all components (it's called **type coercion**) and the result type to the widest type in the expression. The picture below illustrates the direction of this casting:
 
-![](resources/_attachments/Pasted%20image%2020260707232408.png)
+![](../resources/_attachments/Pasted%20image%2020260707232408.png)
 
 Since the type of the result is wider than the previous type, there is no loss of information.
 Type coercion is rare in Kotlin. It works only with numbers and strings.
