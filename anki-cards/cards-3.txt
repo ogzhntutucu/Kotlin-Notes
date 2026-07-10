@@ -1,0 +1,42 @@
+#separator:tab
+#html:true
+#notetype:Kotlin
+#deck:Kotlin
+#guid column:1
+#tags column:4
+#columns:GUID	Front	Back	Tags
+n3-01	String'i Boolean'a çeviren üç fonksiyon — toBoolean(), toBooleanStrict(), toBooleanStrictOrNull() — birbirinden nasıl ayrılır?	"• <b>toBoolean()</b> — harf büyüklüğüne duyarsız (case-insensitive). &quot;true&quot; (hangi yazımla olursa olsun) ise true, <b>başka her şey</b> false olur. Asla çökmez, asla null döndürmez.<br>• <b>toBooleanStrict()</b> — harf duyarlı (case-sensitive); yalnızca tam &quot;true&quot; veya &quot;false&quot; kabul eder. Başka bir şey gelirse <b>program çöker</b> (exception atar).<br>• <b>toBooleanStrictOrNull()</b> — harf duyarlı; tam &quot;true&quot; / &quot;false&quot; değilse çökmez, <b>null döndürür</b>.<br><br><pre>&quot;TRuE&quot;.toBoolean()                // true
+&quot;tru&quot;.toBoolean()                 // false
+&quot;True&quot;.toBooleanStrict()          // çöker (exception)
+&quot;faLse&quot;.toBooleanStrictOrNull()  // null</pre><small>— notes-3 · 3.1</small>"	kotlin::src::notes-3 kotlin::topic::type-conversion kotlin::kind::compare
+n3-02	Kotlin'de 0 = false, 1 = true midir? Bir Boolean değişkene sayı atanabilir mi?	Hayır. Kotlin'de <b>0, false ile aynı şey değildir</b>; C'nin aksine Boolean ile integer birbirine dönüşmez. Bir Boolean değişken yalnızca <code>true</code> veya <code>false</code> alabilir, ona sayı atayamazsın.<br><br><small>— notes-3 · 3.1</small>	kotlin::src::notes-3 kotlin::topic::booleans kotlin::kind::concept
+n3-03	Kotlin'in dört mantıksal operatörü (NOT, AND, OR, XOR) ne zaman true üretir?	Hepsini <b>true</b> üzerinden hatırla:<br>• <b>NOT (!)</b> — değeri tersine çevirir; değer false ise sonuç true olur.<br>• <b>AND (&amp;&amp;)</b> — iki operand da true ise sonuç true.<br>• <b>OR (||)</b> — en az biri true ise sonuç true.<br>• <b>XOR</b> — iki operand <b>birbirinden farklı</b> ise true olur (biri true, biri false).<br><br>Öncelik sırası: NOT &gt; XOR &gt; AND &gt; OR.<br><br><small>— notes-3 · 3.2</small>	kotlin::src::notes-3 kotlin::topic::booleans kotlin::kind::concept
+n3-04	Short-Circuit (Kısa Devre) değerlendirme nedir ve ne işe yarar?	"Bir <code>&amp;&amp;</code> ya da <code>||</code> ifadesinde, <b>sol taraf sonucu tek başına belirliyorsa sağ taraf hiç değerlendirilmez</b>.<br>• <code>&amp;&amp;</code>: sol taraf false ise sonuç zaten false olur, sağ taraf okunmaz.<br>• <code>||</code>: sol taraf true ise sonuç zaten true olur, sağ taraf okunmaz.<br><br>Faydası: önce güvenli olup olmadığını kontrol edip, ancak güvenliyse riskli işlemi yapabilirsin.<br><br><pre>if (liste.isNotEmpty() &amp;&amp; liste[0] &gt; 0) {
+    // liste boşsa sağ taraf hiç çalışmaz → index hatası olmaz
+}</pre><small>— notes-3 · 3.3</small>"	kotlin::src::notes-3 kotlin::topic::booleans kotlin::kind::concept
+n3-05	Expression Function (İfade Fonksiyonu) nedir?	"Tek bir ifadeden oluşan bir fonksiyonu, süslü parantez ve <code>return</code> yazmadan, doğrudan <code>=</code> ile yazmaktır. Kotlin'de bu en şık (idiomatic) yöntemdir.<br><br><pre>fun kare(x: Int): Int = x * x
+// şununla aynı: fun kare(x: Int): Int { return x * x }</pre><small>— notes-3 · 3.3</small>"	kotlin::src::notes-3 kotlin::topic::functions kotlin::kind::concept
+n3-06	"<pre>val a: Int = 10
+val b: Long = a</pre>Bu kod derlenir mi?"	Hayır — <b>type mismatch</b> hatası verir. Kotlin <b>örtük dönüşüm (implicit conversion) yapmaz</b>: veri kaybı olmayacak olsa bile (Int → Long gibi) bir tipi kendiliğinden başka bir tipe çevirmez. Bunu tip güvenliği (type safety) için ister.<br><br>Açıkça çevirmen gerekir:<br><pre>val b: Long = a.toLong()  // artık geçerli</pre><small>— notes-3 · 3.11</small>	kotlin::src::notes-3 kotlin::topic::type-conversion kotlin::kind::gotcha
+n3-07	Atamada Int'i doğrudan Long'a atayamıyoruz ama <code>Int + Long</code> ifadesi otomatik olarak Long oluyor. Bu bir çelişki mi?	"Çelişki değil, ortada iki ayrı durum var:<br>• <b>Atama (assignment):</b> Kotlin örtük dönüşüm yapmaz; değeri elle <code>.toLong()</code> ile çevirmen gerekir.<br>• <b>İfade (expression):</b> Farklı sayısal tipler bir arada işlenince derleyici sonucu otomatik olarak <b>en geniş tipe</b> yükseltir. Buna <b>Type Coercion (Tip Zorlaması)</b> denir ve hep geniş tipe gidildiği için veri kaybı olmaz.<br><br><pre>val num: Int = 100
+val longNum: Long = 1000
+val sonuc = num + longNum  // 1100, tipi Long (coercion)</pre><small>— notes-3 · 3.11 / 3.12</small>"	kotlin::src::notes-3 kotlin::topic::type-conversion kotlin::kind::compare
+n3-08	"<pre>val b: Byte = 2 + 3</pre>Bu kod derlenir mi? (2 ve 3 küçük sayılar, sonuçları 5)"	"Hayır — <b>type mismatch</b>. Kotlin'de <code>2 + 3</code> aslında <code>2.plus(3)</code> demektir ve <b>sonucu Int'tir</b>, Byte değil. Aynı şekilde Short/Byte ile yapılan aritmetik de sonuç olarak <b>Int</b> üretir.<br><br><pre>val b: Byte = 2 + 3       // hata: sonuç Int
+val yuz: Short = 100
+val bes: Byte = 5
+val x = yuz % bes         // tipi Int (Short % Byte → Int)</pre><small>— notes-3 · 3.12 / 3.13</small>"	kotlin::src::notes-3 kotlin::topic::type-conversion kotlin::kind::gotcha
+n3-09	Bir String neye dönüştürülebilir, neye dönüştürülemez?	"String; sayıya ve Boolean'a dönüştürülebilir, ama <b>doğrudan tek bir Char'a dönüştürülemez</b>.<br><br><pre>&quot;8&quot;.toInt()         // 8      (Int)
+&quot;10.09&quot;.toDouble() // 10.09  (Double)
+&quot;true&quot;.toBoolean() // true   (Boolean)</pre><small>— notes-3 · 3.7</small>"	kotlin::src::notes-3 kotlin::topic::type-conversion kotlin::kind::concept
+n3-10	Bir üst tipten alt tipe (ör. Double→Int, Long→Int) çevirirken hangi iki farklı şekilde veri kaybedilir?	"İki ayrı kayıp türü söz konusu:<br>• <b>Kesir atılır:</b> Double/Float → Int/Long çevriminde ondalık kısım tamamen silinir (yuvarlama değil, doğrudan kesme).<br>• <b>Taşma (overflow):</b> büyük bir değeri küçük bir tipe sığdırmaya çalışınca bitler kırpılır ve ortaya <b>anlamsız bir sayı</b> çıkar.<br><br><pre>val d = 12.9
+d.toInt()              // 12  (kesir atıldı)
+
+val big: Long = 100_000_000_000_000
+big.toInt()            // 276447232 (taşma!)</pre><small>— notes-3 · 3.7 / 3.8</small>"	kotlin::src::notes-3 kotlin::topic::type-conversion kotlin::kind::gotcha
+n3-11	Unsigned (işaretsiz) integer tipleri nedir; işaretli hallerinden farkı ve nasıl yazılırlar?	Yalnızca <b>negatif olmayan</b> değerler tutan tiplerdir: <b>UByte, UShort, UInt, ULong</b> (yine sırasıyla 8/16/32/64 bit).<br><br>Boyutları aynı kalır; ama negatif aralık olmadığından o kısım pozitife kayar, yani aynı bit sayısıyla <b>iki kat büyük pozitif</b> değer tutabilirler (ör. UByte 0–255).<br><br>Değerin sonuna <code>u</code> ya da <code>U</code> eki koyarak yazılır: <code>val x: UByte = 5u</code>.<br><br><small>— notes-3 · 3.14</small>	kotlin::src::notes-3 kotlin::topic::types kotlin::kind::concept
+n3-12	"<pre>var d: Int = 2147483647   // Int.MAX_VALUE
+d += 1
+println(d)</pre>Çıktı ne olur?"	<b>-2147483648</b> (yani Int.MIN_VALUE)<br><br>Buna <b>Data Type Overflow (Veri Tipi Taşması)</b> denir: değer üst sınıra ulaşınca, tıpkı dolu bardağın taşması gibi en alt sınıra 'sarar'.<br><br>Dikkat: derleyici seni bu konuda <b>uyarmaz</b>, hata da almazsın — program davranışı öngörülemez hâle gelir. Doğru tipi seçmek tamamen senin sorumluluğun.<br><br><small>— notes-3 · 3.15</small>	kotlin::src::notes-3 kotlin::topic::types kotlin::kind::gotcha
+n3-13	Kotlin'de if, Java'daki if'ten hangi temel açıdan farklıdır?	Kotlin'de <b>if bir ifadedir (expression)</b> — bir <b>değer üretir</b> ve doğrudan bir değişkene ya da return'e atanabilir. Java'da ise if yalnızca bir komuttur (statement), değer döndürmez.<br><br>Bu sayede <code>return</code>'ü iki ayrı dala yazmak yerine, tek sefer if'in dışına çıkararak yazabilirsin (buna 'lifted out' denir):<br><pre>return if (n % 2 == 0) n / 2 else (n + 1) / 2</pre><small>— notes-3 · 3.16</small>	kotlin::src::notes-3 kotlin::topic::control-flow kotlin::kind::concept
+n3-14	Tek bir satırdan boşlukla ayrılmış birden çok değeri nasıl okursun?	"Satırı <code>split(&quot; &quot;)</code> ile parçalayıp bileşenlerini yıkımla (destructuring) ayrı değişkenlere alırsın. Tek satırda dört değere kadar bu yöntemle okunabilir.<br><br><pre>val (a, b, c, d) = readln().split(&quot; &quot;)
+// girdi: Have a nice Kotlin → a=Have, b=a, c=nice, d=Kotlin</pre><small>— notes-3 · 3.10</small>"	kotlin::src::notes-3 kotlin::topic::io kotlin::kind::concept

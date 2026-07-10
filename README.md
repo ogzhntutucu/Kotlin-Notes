@@ -25,17 +25,24 @@ Notları [Obsidian](https://obsidian.md) ile tutuyorum, bu yüzden repo aynı za
 
 ### Kotlin Mentor (Claude Project)
 
-Kurs sırasında anlamadığım konularda yapay zekadan yardım alıyorum. Bunun için Claude'da bir "Kotlin Mentor" projesi oluşturdum ve bu repoyu projeye bağladım; böylece her sohbette güncel notlarıma erişip gerektiğinde referans verebiliyor. Projeye özel yazdığım talimatlar ve resmi Kotlin style guide, [others/claude-kotlin-mentor-docs/](others/claude-kotlin-mentor-docs/) altında tutuluyor:
+Kurs sırasında anlamadığım konularda yapay zekadan yardım alıyorum. Bunun için Claude'da bir "Kotlin Mentor" projesi oluşturdum ve bu repoyu projeye bağladım; böylece her sohbette güncel notlarıma erişip gerektiğinde referans verebiliyor. Projeye özel yazdığım talimatlar ve resmi Kotlin style guide, [kotlin-mentor-docs/](kotlin-mentor-docs/) altında tutuluyor:
 
-- **[instructions.md](others/claude-kotlin-mentor-docs/instructions.md)** — Projenin "system prompt"u: seviyem, hedeflerim, dil kuralları, öğretim tarzı tercihlerim
-- **[kotlin-style-guide.md](others/claude-kotlin-mentor-docs/kotlin-style-guide.md)** — Google/Android'in resmî Kotlin stil rehberi (idiomatic yazım için referans kaynak)
+- **[instructions.md](kotlin-mentor-docs/instructions.md)** — Projenin "system prompt"u: seviyem, hedeflerim, dil kuralları, öğretim tarzı tercihlerim
+- **[kotlin-style-guide.md](kotlin-mentor-docs/kotlin-style-guide.md)** — Google/Android'in resmî Kotlin stil rehberi (idiomatic yazım için referans kaynak)
+
+### Anki (Recall) Sistemi
+
+Öğrendiklerimi kalıcı hale getirmek için notlarımı bir aralıklı tekrar (spaced repetition) sistemiyle destekliyorum. Her `notes-N.md` dosyasından, o notun "unutmak istemediğim" kısımlarını Anki'ye içe aktarılabilir kart dosyalarına (`cards-N.txt`) dönüştürüyorum. Bu dosyalar [anki-cards/](anki-cards/) altında yaşıyor.
+
+Kartlar; kavramlar, sezgiye aykırı davranışlar (gotcha), karşılaştırmalar ve İngilizce terminoloji üzerine odaklanır — her gün yazarak zaten pekişen temel sözdizimi kartlaştırılmaz. Kartların nasıl üretildiğine, format ve içerik kurallarına dair kılavuz ile Anki not tipi (note type) şablonları [anki-cards/card-type-docs/](anki-cards/card-type-docs/) altındadır.
 
 ### Yapı
 
 ```
-notes/                            # Markdown notlar
-resources/_attachments/           # Notlarda kullanılan görseller
-others/claude-kotlin-mentor-docs/ # Kotlin Mentor (Claude Project) yapılandırma dosyaları
+notes/                  # Markdown notlar
+resources/_attachments/ # Notlarda kullanılan görseller
+kotlin-mentor-docs/     # Kotlin Mentor (Claude Project) yapılandırma dosyaları
+anki-cards/             # Anki kart dosyaları (cards-N.txt) + üretim kılavuzu ve şablonlar
 ```
 
 ---

@@ -1,0 +1,31 @@
+#separator:tab
+#html:true
+#notetype:Kotlin
+#deck:Kotlin
+#guid column:1
+#tags column:4
+#columns:GUID	Front	Back	Tags
+n1-01	İfade (Expression) ile Komut (Statement) arasındaki fark nedir?	"<b>İfade (Expression):</b> çalıştırılınca bir <b>değer üretir</b>.<br><b>Komut (Statement):</b> bir eylem gerçekleştirir, değer üretmez.<br><br><pre>2 * 2          // ifade → 4 değerini üretir
+val x = 2 * 2  // komut → bir eylem, değer üretmez</pre><small>— notes-1 · 1.1</small>"	kotlin::src::notes-1 kotlin::topic::basics kotlin::kind::compare
+n1-02	JDK, JRE ve JVM nasıl ilişkilidir; her biri ne sağlar?	<b>İç içe geçmiş bir yapı:</b><br>• <b>JVM</b> — bytecode'u makine koduna çevirip çalıştırır (çevirmen gibi).<br>• <b>JRE</b> = JVM + standart kütüphaneler → derlenmiş programı <b>çalıştırmak</b> için.<br>• <b>JDK</b> = JRE + geliştirme araçları (derleyici, debugger) → program <b>geliştirmek</b> için.<br><br>Yani: JDK ⊃ JRE ⊃ JVM<br><br><small>— notes-1 · 1.3</small>	kotlin::src::notes-1 kotlin::topic::basics kotlin::kind::concept
+n1-03	val, var ve const val arasındaki fark nedir?	"• <b>val</b> — salt-okunur (read-only) referans; bir kez atanır, sonra yeniden atanamaz.<br>• <b>var</b> — değiştirilebilir (mutable); istediğin kadar yeniden atanır.<br>• <b>const val</b> — derleme zamanı sabiti (compile-time constant); yalnızca primitive ve String olur.<br><br><pre>val ad = ""Oğuzhan""   // yeniden atanamaz
+var yas = 25          // yas = 26 yapılabilir
+const val PI = 3.14   // derleme zamanı sabiti</pre><small>— notes-1 · 1.4</small>"	kotlin::src::notes-1 kotlin::topic::variables kotlin::kind::compare
+n1-04	"<pre>val liste = mutableListOf(1, 2, 3)
+liste.add(4)
+println(liste)</pre>Bu kod çalışır mı? Çıktı ne olur?"	Çalışır → <b>[1, 2, 3, 4]</b><br><br><b>val</b> değişkenin <b>yeniden atanmasını</b> yasaklar; gösterdiği nesnenin <b>iç durumunu (internal state)</b> değiştirmeyi değil. Referans sabittir ama içerik değişebilir.<br><br><small>— notes-1 · 1.6</small>	kotlin::src::notes-1 kotlin::topic::variables kotlin::kind::gotcha
+n1-05	const val'i sıradan bir val'den ayıran nedir; hangi kısıtları var?	• <b>Derleme zamanında</b> (compile-time) bilinir ve kullanıldığı yere doğrudan gömülür (inline) → performans.<br>• Yalnızca <b>primitive</b> ve <b>String</b> olabilir.<br>• Yalnızca top-level ya da <code>object</code> içinde tanımlanır.<br>• Değeri derlemede belli olduğundan <b>anotasyonlarda</b> parametre olarak kullanılabilir.<br><br><pre>const val MAX_TIMEOUT = 5000</pre><small>— notes-1 · 1.7</small>	kotlin::src::notes-1 kotlin::topic::variables kotlin::kind::concept
+n1-06	Kotlin'in dolu bloklar için kullandığı, açılış parantezi satır sonunda kalan brace stilinin adı nedir? (İngilizce terim)	"<b>K&amp;R Style</b> (Kernighan &amp; Ritchie) — halk arasında <b>Egyptian Brackets</b> (Mısır Parantezleri).<br><br>Açılış parantezi satır sonunda, içerik alt satırda, kapanış kendi satırında yer alır.<br><br><pre>fun main() {
+    println(""merhaba"")
+}</pre><small>— notes-1 · 1.10</small>"	kotlin::src::notes-1 kotlin::topic::code-style kotlin::kind::term
+n1-07	İsimlendirmede 'kural' (rule) ile 'convention' arasındaki fark nedir?	"<b>Kural (Rule):</b> derleyici <b>zorlar</b>; uymazsan kod <b>derlenmez</b> (rakamla başlayamaz, keyword olamaz).<br><br><b>Convention:</b> derlenir ama <b>iyi pratik</b> meselesidir (lowerCamelCase, _ ile başlamama, anlamlı isim).<br><br><pre>val kullaniciAdi = ""Ada""   // convention'a uygun
+val 1adi = ""Ada""           // KURAL ihlali → derlenmez</pre><small>— notes-1 · 1.13</small>"	kotlin::src::notes-1 kotlin::topic::naming kotlin::kind::compare
+n1-08	Kod içinde açıklaması olmadan bırakılmış sabit değere ne denir (İngilizce terim)? Doğrusu nasıl olmalı?	"<b>Sihirli Sayı (Magic Number)</b> — genel adıyla Magic Value.<br><br>Doğrusu: değeri anlamlı isimli bir sabite çıkarmak (SCREAMING_SNAKE_CASE).<br><br><pre>println(7)                // sihirli sayı — 7 nedir?
+const val HAFTA_GUNU = 7  // anlamlı sabit
+println(HAFTA_GUNU)</pre><small>— notes-1 · 1.14</small>"	kotlin::src::notes-1 kotlin::topic::code-style kotlin::kind::concept
+n1-09	Type Inference (Tip Çıkarımı) nedir?	"Derleyicinin, değişkenin tipini <b>verdiğin değerden otomatik anlaması</b>. Tipi elle yazmana gerek kalmaz.<br><br><pre>val text = ""merhaba""  // Kotlin: String
+val n = 1             // Kotlin: Int</pre><small>— notes-1 · 1.16</small>"	kotlin::src::notes-1 kotlin::topic::types kotlin::kind::concept
+n1-10	"<pre>val greeting
+greeting = ""merhaba""</pre>Bu kod derlenir mi? Neden?"	"Hayır, derlenmez. Değeri sonra vereceksen tip çıkarımı devreye giremez (bildirim anında ortada değer yok). <b>Tipi elle yazman gerekir.</b><br><br><pre>val greeting: String   // tip belirtildi
+greeting = ""merhaba""   // artık geçerli</pre><small>— notes-1 · 1.16</small>"	kotlin::src::notes-1 kotlin::topic::types kotlin::kind::gotcha
+n1-11	Type Mismatch (Tip Uyuşmazlığı) hatası ne zaman ortaya çıkar?	"Bir değişkene, tipiyle <b>uyuşmayan</b> bir değer atadığında ortaya çıkar. Data type'ların temel koruma görevi budur: uygunsuz değeri baştan engeller.<br><br><pre>val n: Int = ""abc""  // Type mismatch: String verildi, Int bekleniyordu</pre><small>— notes-1 · 1.17</small>"	kotlin::src::notes-1 kotlin::topic::types kotlin::kind::concept

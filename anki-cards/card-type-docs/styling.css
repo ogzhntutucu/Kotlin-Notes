@@ -1,0 +1,61 @@
+.card {
+  background-color: #2b2b2b;
+  color: #c9cbcf;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  text-align: left;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 18px 16px;
+}
+
+.card pre {
+  background-color: #1e1f22;
+  border: 0.5px solid #3c3f41;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 12px 0;
+  overflow-x: auto;
+  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* Satır içi kod (kısa parçalar) */
+.card code {
+  background-color: #3c3f41;
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  color: #d4d4d4;
+}
+
+/* Kod bloğunun rengini/arka planını highlight.js'e bırak, çift kutuyu engelle */
+.card pre code,
+.card pre code.hljs {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  color: #a9b7c6;
+}
+
+.card b, .card strong {
+  color: #e0a367;
+  font-weight: 600;
+}
+
+.card hr#answer {
+  border: none;
+  border-top: 0.5px solid #3c3f41;
+  margin: 20px 0;
+}
+
+.card small {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 12px;
+  font-style: italic;
+  color: #6b6b6b;
+}

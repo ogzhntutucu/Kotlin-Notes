@@ -1,0 +1,38 @@
+#separator:tab
+#html:true
+#notetype:Kotlin
+#deck:Kotlin
+#guid column:1
+#tags column:4
+#columns:GUID	Front	Back	Tags
+n4-01	İlişkisel operatörler (>, <, >=, <=) ile eşitlik operatörleri (==, !=) arka planda nasıl farklı çalışır?	"• <b>&gt;, &lt;, &gt;=, &lt;=</b> arka planda <code>compareTo()</code> çağırır → yalnızca <b>sayısal büyüklüğe</b> bakar, tip farkı sorun olmaz (Int ile Long güvenle karşılaştırılabilir).<br>• <b>== ve !=</b> arka planda <code>equals()</code> çağırır → hem <b>tip</b> hem <b>değer</b> eşitliğine bakar. Farklı tipler JVM'de asla eşit sayılmadığından, Int ile Long'u == ile karşılaştırmak <b>derleme zamanında hata</b> verir.<br><br><pre>val one: Long = 1
+val zero: Int = 0
+one &gt;= zero            // OK → true
+one == zero            // hata! önce zero.toLong() gerekir</pre><small>— notes-4 · 4.1</small>"	kotlin::src::notes-4 kotlin::topic::operators kotlin::kind::compare
+n4-02	Bir Char ile onun Unicode kod değeri arasında nasıl dönüşüm yaparsın; bir satırdan tek bir Char'ı nasıl okursun?	"• <code>.code</code> — bir Char'ı Unicode kod noktasına (Int) çevirir.<br>• <code>.toChar()</code> — bir Int kodu tekrar Char'a çevirir.<br>• <code>'\u0040'</code> gibi hex Unicode yazımıyla da karakter oluşturabilirsin (bu '@' demektir).<br>• Bir satırdan tek bir Char okumak için: <code>readln().first()</code>.<br><br><pre>'a'.code        // 97
+97.toChar()     // 'a'
+'\u0040'        // '@'</pre><small>— notes-4 · 4.4</small>"	kotlin::src::notes-4 kotlin::topic::chars kotlin::kind::concept
+n4-03	"<pre>val a = 'b' + 1     // ?
+val b = 'a' + 'c'    // ?</pre>Bu iki satırdan hangisi çalışır?"	Sadece ilki çalışır.<br>• <code>'b' + 1</code> → <b>'c'</b>: bir Char'a Int eklemek, Unicode sırasında ileri/geri gitmek demektir (sonraki/önceki karakter).<br>• <code>'a' + 'c'</code> → <b>hata</b>: iki Char birbiriyle <b>toplanamaz</b>. (İlginç biçimde iki string toplanabilir, ama iki Char toplanamaz.)<br><br><small>— notes-4 · 4.4</small>	kotlin::src::notes-4 kotlin::topic::chars kotlin::kind::gotcha
+n4-04	Karakter işlemede <code>lowercaseChar()</code> ile <code>lowercase()</code> arasındaki fark nedir?	"Aralarındaki fark dönüş tipidir:<br>• <code>lowercaseChar()</code> → küçük harfi bir <b>Char</b> olarak döndürür.<br>• <code>lowercase()</code> → küçük harfi bir <b>String</b> olarak döndürür.<br>(Aynı ayrım <code>uppercaseChar()</code> / <code>uppercase()</code> için de geçerli.)<br><br>Ayrıca kod ile uğraşmadan kontrol yapmak için hazır fonksiyonlar var: isDigit(), isLetter(), isLetterOrDigit(), isWhitespace(), isUpperCase()...<br><br><pre>'e'.uppercaseChar()  // 'E'  (Char)
+'e'.uppercase()      // &quot;E&quot;  (String)</pre><small>— notes-4 · 4.6</small>"	kotlin::src::notes-4 kotlin::topic::chars kotlin::kind::compare
+n4-05	Bir string'in ilk/son karakterine, son indeksine ve boş olup olmadığına idiomatic olarak nasıl erişirsin?	"• <code>first()</code> — ilk karakter.<br>• <code>last()</code> — son karakter.<br>• <code>lastIndex</code> — son indeksin numarası.<br>• <code>isEmpty()</code> — string boş mu? (<code>length == 0</code> yazmak yerine bu idiomatic yol tercih edilir.)<br><br><pre>val s = &quot;Hello&quot;
+s.first()      // 'H'
+s.last()       // 'o'
+s.lastIndex    // 4
+s.isEmpty()    // false</pre><small>— notes-4 · 4.8</small>"	kotlin::src::notes-4 kotlin::topic::strings kotlin::kind::concept
+n4-06	"<pre>val s = &quot;string&quot;
+s[3] = 'o'</pre>Bu kod çalışır mı?"	"Hayır — string'ler <b>immutable</b>'dır; bir karakterini yerinde değiştiremezsin.<br><br>Değiştirmek istiyorsan tek yol <b>yeni bir string atamaktır</b> (bunun için <code>var</code> gerekir). Dikkat: <code>val</code> bir listenin içeriğinin değişmesine izin verirdi, ama string <b>her zaman</b> immutable'dır — o esneklik burada geçerli değildir.<br><br><pre>var s = &quot;string&quot;
+s = &quot;strong&quot;   // geçerli: yepyeni bir string atandı</pre><small>— notes-4 · 4.9</small>"	kotlin::src::notes-4 kotlin::topic::strings kotlin::kind::concept
+n4-07	substring(startIndex, lastIndex) hangi aralığı döndürür; sınırları nedir?	"<code>startIndex</code> dahil, <code>lastIndex</code> hariç (exclusive) olacak şekilde bir parça döndürür.<br><br>Geçerli aralık: <code>0 &lt;= startIndex &lt;= lastIndex &lt;= length</code>. Yani lastIndex, uzunluğa <b>eşit olabilir</b> (exclusive olduğundan) ama onu <b>geçemez</b>.<br><br><pre>val s = &quot;Hello&quot;
+s.substring(0, 3)  // &quot;Hel&quot;
+s.substring(2)     // &quot;llo&quot; (lastIndex atlanınca sona kadar alır)</pre><small>— notes-4 · 4.11</small>"	kotlin::src::notes-4 kotlin::topic::strings kotlin::kind::concept
+n4-08	substringBefore/After ile substringBeforeLast/AfterLast arasında ne zaman hangisini kullanırsın?	"Bunlar indekse göre değil, bir <b>karaktere göre</b> keser:<br>• <b>Before / After</b> — karakterin <b>ilk (first)</b> göründüğü yeri baz alır.<br>• <b>BeforeLast / AfterLast</b> — <b>son (last)</b> göründüğü yeri baz alır.<br><br>Kural: aynı ayraçtan birden fazla olabiliyorsa ve seni <b>sonuncusu</b> ilgilendiriyorsa ...Last versiyonunu kullan.<br><br><pre>val ad = &quot;notes.backup.kt&quot;
+ad.substringAfter('.')      // &quot;backup.kt&quot;  (ilk noktadan sonrası)
+ad.substringAfterLast('.')  // &quot;kt&quot;         (gerçek uzantı)</pre><small>— notes-4 · 4.12 / 4.13</small>"	kotlin::src::notes-4 kotlin::topic::strings kotlin::kind::when-to-use
+n4-09	replace() ile replaceFirst() arasındaki fark nedir?	"• <code>replace(a, b)</code> — a'nın <b>tüm</b> geçtiği yerleri b ile değiştirir.<br>• <code>replaceFirst(a, b)</code> — yalnızca <b>ilk</b> geçtiği yeri değiştirir.<br><br>String immutable olduğundan ikisi de orijinali bozmaz, <b>yeni bir string döndürür</b>.<br><br><pre>&quot;one one two&quot;.replace(&quot;one&quot;, &quot;x&quot;)      // &quot;x x two&quot;
+&quot;one one two&quot;.replaceFirst(&quot;one&quot;, &quot;x&quot;) // &quot;x one two&quot;</pre><small>— notes-4 · 4.14</small>"	kotlin::src::notes-4 kotlin::topic::strings kotlin::kind::compare
+n4-10	Floating-point sayılarda / operatörü, Int'teki gibi kalanı atar mı? Ayrıca neden 3.3 / 3 → 1.0999... çıkabilir?	"Hayır. Int'te <code>/</code> integer division yapıp kalanı atar; ama <b>Float/Double</b>'da <code>/</code> gerçek bölme yapar ve kesirli kısım korunur.<br><br>Yine de sonuç bazen kesin olmayabilir (ör. 3.3 / 3 → 1.0999...). Sebebi: bilgisayarlar ikili (binary) tabanda çalışır ve birçok ondalık sayı 2 tabanında tam olarak temsil edilemez. Bu küçük sapmalar <b>normaldir</b>, hata değildir.<br><br><pre>8 / 3        // 2       (Int → kalan atıldı)
+8.0 / 3      // 2.6666… (Double → gerçek bölme)
+3.3 / 3      // 1.0999999999999999</pre><small>— notes-4 · 4.15</small>"	kotlin::src::notes-4 kotlin::topic::types kotlin::kind::concept
+n4-11	Kotlin'de String bir <code>Array&lt;Char&gt;</code> müdür?	Hayır. String kendi başına ayrı bir tiptir; arka planda bir array <b>değildir</b>.<br><br>Ancak <code>CharSequence</code> adlı arayüzü (interface) uyguladığı için dışarıya array gibi davranır: indeksle erişim (<code>[]</code>), uzunluk (<code>.length</code>) ve iterasyon sunar. Yani 'array gibi davranır ama array değildir'.<br><br><small>— notes-4 · 4.17</small>	kotlin::src::notes-4 kotlin::topic::strings kotlin::kind::concept
