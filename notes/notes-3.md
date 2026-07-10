@@ -50,11 +50,15 @@ println("false".toBooleanStrictOrNull()) // false
 println("faLse".toBooleanStrictOrNull()) // null
 ```
 
+- toBoolean() -> case insensitive'dir yani harfler buyuklu kucuklu olsa da dert degil.  "true" ve benzeri deger gelmedigi muddetce false olur. null kontrolu vardir, ama null donmez. true degilse, null ise bile false doner. 
+- toBooleanStrict() -> case sensitive'dir ve null kontrolu yoktur. true ya da false degilse null donmez, hata alirsin.
+- toBooleanStrictOrNull() -> case sensitive'dir ve null kontrolu yapar. true ya da false degilse null doner.
+
 ---
 ## 3.2
 ### Logical operators
 
-Boolean type variables construct logical statements with the help of logical operators. Kotlin has four logical operators: **NOT**, **AND**, **OR**, and **XOR:**
+Boolean type variables construct logical statements with the help of logical operators. Kotlin has four logical operators: **NOT**, **XOR**, **AND**, and **OR**.
 
 NOT is a unary operator that reverses the Boolean value. It can be denoted with `!`.
 
@@ -92,8 +96,8 @@ val b4 = true xor true   // false
 
 mantiksal operatorleri TRUE uzerinden aklinda tut:
 - `!` NOT -> bir deger false ise tersi true'dur.
-- `xor` XOR -> iki deger birbirlerinin zitti olmalilar.
-- `&&` AND -> iki degerden ikisi de true ya da ikisi de false olmali.
+- `xor` XOR -> iki deger birbirlerinin zitti olmali
+- `&&` AND -> iki deger birbirinin aynisi olmali
 - `||` OR -> iki degerden herhangi birinin true olmasi yeterli.
 
 ---
@@ -123,11 +127,13 @@ if (canGoHiking) {
 }
 ```
 
+#### Bu ornek uzerinden Businnes Logic tanimi
+
 Gündelik hayatta hava durumu sürekli değişir; programlamada bunları `Değişken (Variable)` olarak tanımlarız (`isDry`, `isCold`, `isSummer`). Çünkü bu değerler uygulamanın çalıştığı anki duruma, bir sensörden gelen veriye veya kullanıcının girdisine göre farklılık gösterir.
 
 Ancak, `canGoHiking` ifadesi uygulamanın **kuralıdır**. Buna yazılım dünyasında `İş Mantığı (Business Logic)` deriz. "Hangi şartlar altında yürüyüşe çıkılır?" sorusunun cevabı, yani kural seti, sistemin gereksinimleri değişmediği sürece sabittir.
 
-1. **"Hava kuru olmalı, eğer kuru değilse diğer ikisinin önemi yok":** Bu tam olarak `isDry && ...` kısmıdır. `Ve (AND)` operatörü soldan sağa çalışır. Eğer `isDry` değeri `false` ise, Kotlin sağ tarafın sonucunu umursamaz ve orayı **hiç okumaz**. Çünkü sonuç zaten `false` çıkacaktır. Buna `Kısa Devre (Short-Circuit)` denir ve harika bir performans optimizasyonudur.
+1. **"Hava kuru olmalı, eğer kuru değilse diğer ikisinin önemi yok":** Bu tam olarak `isDry && ...` kısmıdır. `Ve (AND)` operatörü soldan sağa çalışır. Eğer `isDry` değeri `false` ise, Kotlin sağ tarafın sonucunu umursamaz ve orayı **hiç okumaz**. Çünkü sonuç zaten `false` çıkacaktır. Buna `Kısa Devre (Short-Circuit)` denir ve harika bir performans optimizasyonudur. (OR icin de gecerli. eger ilk bakilan sey true ise digerine bakilmaz.) önce güvenli olup olmadığını kontrol edip, sonra riskli işlemi yapabilmene yarar.
 2. **"Yaz olmalı veya yaz değilse bile soğuk olmamalı":** Bu da parantez içindeki `(!isCold || isSummer)` kısmıdır. `Veya (OR)` mantığında iki seçenekten birinin kurtarması yeterlidir.
 
 Madem bu `İş Mantığı (Business Logic)` sabit ve programın farklı yerlerinde tekrar tekrar kullanılabilir, bunu tek satırlık bir değişkende tutmak yerine bir `Fonksiyon (Function)` haline getirmek çok daha profesyoneldir.
@@ -175,7 +181,7 @@ Otherwise, the expression is `false`.
 ```kotlin
 // Business Logic in Expression Function
 fun shouldGo(isClosingSoon: Boolean, isNear: Boolean): Boolean = 
-	!isClosingSoon || isNear
+    !isClosingSoon || isNear
 ```
 
 |**isClosingSoon (Kapanıyor mu?)**|**isNear (Yakın mı?)**|**!isClosingSoon**|**!isClosingSoon \| isNear (Sonuç)**|**Gidilir mi?**|
@@ -235,6 +241,8 @@ val byteNumber = doubleNumber.toInt().toByte()  // correct way
 
 // zaten ide izin vermiyor buna.
 ```
+
+float/double degerlerini byte/short degerlerine donusturmen gerektiginde floatNumber.toInt().toShort() su sekilde once int'e sonra short'a donusturecek sekilde yapilmalidir.
 
 ---
 ## 3.7
@@ -320,7 +328,7 @@ Let's take a closer look at the output.
 - Then the number is converted to `Float`. 
 - We see a loss here, as this type can store fewer decimal numbers. The `Int` conversion cuts the fractional part. 
 - The number 1000 is larger than the `Byte` type can store (from -128 to 127), so we have a **type overflow** (-24). 
-- The result of converting the input string to `Boolean` is `false`, because the value is not `"true"` (**case insensitive**).
+- The result of converting the input string to `Boolean` is `false`, because the value is not `"true"` (**case insensitive**). (yani deger true olmadigi icin false olur diyor.)
 
 ---
 ## 3.9
@@ -335,13 +343,13 @@ Use `Double` as the input type and `Long` as the result type (values may be 
 import java.util.Scanner  
   
 fun main() {  
-	// cozum 1
+    // cozum 1
     val scanner = Scanner(System.`in`)  
     val input = scanner.nextDouble()  
     println(input.toLong())  
     scanner.close()  
-	
-	// cozum 2
+    
+    // cozum 2
     readlnOrNull()?.toDoubleOrNull()?.toLong().let(::println)  
 }
 ```
@@ -397,7 +405,7 @@ This construction splits the input string at spaces and stores the words in the 
 
 ---
 ## 3.11
-### Explicitly conversion
+### Explicit conversion
 
 ```kotlin
 fun main() {  
@@ -417,6 +425,9 @@ Bunun birkaç önemli sebebi vardır:
 ---
 ## 3.12
 ### Type coercion
+
+tip zorlamasi. degiskenin tipinin veri kaybi yasanmamasi icin yukseltilmesi.
+short ve byte -> int -> long -> float -> double
 
 But what happens if we calculate the sum of `Int` and `Long` variables? In this case, the type is inferred from the context.
 
@@ -498,23 +509,31 @@ val s2: Short = 10 + 3L  // Line 4 - invalid
 ## 3.14
 ### Unsigned integers
 
+boyutlari degismez ancak negatif deger olmadigi icin oradaki kisim pozitife kayar. bu sayede 2 kat buyuk pozitif degerler alabilirler.
+- UByte -> 0 to 255
+- UShort -> 0 to 65535
+- UInt -> 0 to 4 + 3x000 (4 milyon civari)
+- Ulong -> 0 to 18 + 6x000 (18 kentilyon civari)
+
 We already know that all integer types in Kotlin — `Int`, `Long`, `Byte`, and `Short` can be both positive and negative. In addition to all these integer types, Kotlin provides the ability to create **unsigned** integers – integers that can contain only non-negative values.
 
 Kotlin provides the following unsigned types:
 
-|   |   |
-|---|---|
-|**Type**|**Description**|
-|`UByte`|an unsigned 8-bit integer, ranges from 0 to 255|
-|`UShort`|an unsigned 16-bit integer, ranges from 0 to 65535|
-|`UInt`|an unsigned 32-bit integer, ranges from 0 to 4 294 967 295 (2^32-1)|
-|`ULong`|an unsigned 64-bit integer, ranges from 0 to 18 446 744 073 709 551 615 (2^64-1)|
+|          |                                                                                  |
+| -------- | -------------------------------------------------------------------------------- |
+| **Type** | **Description**                                                                  |
+| `UByte`  | an unsigned 8-bit integer, ranges from 0 to 255                                  |
+| `UShort` | an unsigned 16-bit integer, ranges from 0 to 65535                               |
+| `UInt`   | an unsigned 32-bit integer, ranges from 0 to 4 294 967 295 (2^32-1)              |
+| `ULong`  | an unsigned 64-bit integer, ranges from 0 to 18 446 744 073 709 551 615 (2^64-1) |
 
 Unsigned numbers are created in the same way as any others. In order to indicate that you are creating an unsigned number, you need to add the suffix "`u`" or "`U`" to it.
 
 ```kotlin
 val uByte: UByte = 5u
 val uShort: UShort = 10U
+
+// u ya da U koyulmadigi muddetce type mismatch olur.
 ```
 
 In this example, we create variables of specified types. But, if you don't indicate the type directly, then the compiler will use `UInt` or `ULong` depending on the size of the literal:
@@ -522,12 +541,29 @@ In this example, we create variables of specified types. But, if you don't indic
 ```kotlin
 val smallSize = 100u // UInt by default
 val bigSize = 5_000_000_000u // ULong because the number doesn't fit in UInt
+
+// type inference var diyor yani aslinda. normalde de zaten boyuta gore tip cikarimi yapiliyordu. unsigned icin ekstra olarak u koymak gerekiyor ki unsigned oldugu anlasilabilsin.
 ```
 
 There is also a special suffix "`uL`" (or "`UL`"). If you tag a number with this suffix, then an `ULong` will be created regardless of the size of the number:
 
 ```kotlin
 val smallLong = 10uL // ULong because it is marked with "uL"
+
+// yani sayi kucuk olsa normalde u koyunca int yapardi. kucuk olsa bile long yapmak istiyorsan uL yapman lazim diyor.
+```
+
+bir baska ornek:
+
+```kotlin
+fun kaydiOku(id: ULong) {
+    println("ID: $id")
+}
+
+fun main() {
+    kaydiOku(10u)   // HATA! 10u -> UInt, ama fonksiyon ULong bekliyor
+    kaydiOku(10uL)  // Çalışır, çünkü 10uL zaten ULong
+}
 ```
 
 ---
@@ -551,6 +587,8 @@ Aşağıdaki noktaları hatırlamak önemlidir:
 - Veri tipi taşma hataları programcı hatalarıdır. 
 - Veri türü taşması durumunda program davranışı öngörülemez. 
 - Derleyici tür taşmaları için sizi uyarmayacaktır, bu nedenle değişkenler için veri türlerini doğru seçmeniz ve veri türlerinin dönüşümünü dikkatle izlemeniz gerekir.
+
+bu durumda program davranisi ongorulemez ve uyari/hata da almazsin. bunu kendin farkinda olup onlem almalisin.
 
 ---
 ## 3.16

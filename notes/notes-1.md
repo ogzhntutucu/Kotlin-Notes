@@ -12,7 +12,7 @@
 - **Anahtar Kelime (Keyword):** Dili tasarlayanlar tarafından derleyici seviyesinde özel bir anlama sahip olduğu için rezerve edilmiş kelimelerdir (örneğin: `fun`, `val`, `if`). Bunları kendi değişken isimlerin olarak kullanamazsın.
 - **Tanımlayıcı (Identifier):** Kod içindeki değişkenlere, fonksiyonlara veya sınıflara senin (programcının) verdiği isimlerdir.
 - **Yorum (Comment):** Derleyici tarafından tamamen görmezden gelinen, ancak kodu okuyan diğer mühendisler (veya gelecekteki sen) için bırakılmış açıklama metinleridir. Kotlin'de `//` ile başlar.
-- **Boşluk (Whitespace):** Boşluk karakteri, tab veya yeni satır karakterleridir. Kodu okunabilir kılmak için hayati önem taşır. Sisteme yüklediğin Kotlin Stil Rehberine (Kotlin Style Guide) göre, girintileme (indentation) için _tab_ yerine her zaman 4 adet _boşluk (space)_ kullanılmalıdır.
+- **Boşluk (Whitespace):** Boşluk karakteri, tab veya yeni satır karakterleridir. Kodu okunabilir kılmak için hayati önem taşır. Kotlin Stil Rehberine göre, girintileme (indentation) için _tab_ yerine her zaman 4 adet _boşluk (space)_ kullanılmalıdır.
 - **Kotlin'in Kalbi: Giriş Noktası (Entry Point):** İşletim sistemi veya Java Sanal Makinesi (JVM), programını başlattığında ilk olarak nereye bakacağını bilmek zorundadır. Kotlin'de bu **Giriş Noktası (Entry Point)**, `main` adındaki özel fonksiyondur.
 
 ---
@@ -120,9 +120,9 @@ myMutableList.add(6)   // it works
 println(myMutableList) // [1, 2, 3, 4, 5, 6]
 ```
 
-As you can see, this code changed the internal state of the `myMutableList` by adding another integer number. When we invoked the `add()` function, we changed not the variable itself but the list it represents.
+This code changed the internal state of the `myMutableList` by adding another integer number. When we invoked the `add()` function, we changed not the variable itself but the list it represents.
 
-Gördüğünüz gibi, bu kod myMutableList'in dahili durumunu başka bir tam sayı ekleyerek değiştirdi. add() fonksiyonunu çağırdığımızda, değişkenin kendisini değil, temsil ettiği (**represent**) listeyi değiştirdik.
+Bu kod myMutableList'in dahili durumunu başka bir tam sayı ekleyerek değiştirdi. add() fonksiyonunu çağırdığımızda, değişkenin kendisini değil, temsil ettiği (**represent**) listeyi değiştirdik.
 
 val -> değişkene yeniden değer atanmasını yasaklar, ancak nesnenin iç durumunun değiştirilmesine izin verir.
 
@@ -141,6 +141,8 @@ const val CONST_CHAR = 'c'
 const val CONST_STRING = "I am constant"
 const val CONST_ARRAY = arrayOf(1, 2, 3) // error: only primitives and strings are allowed
 ```
+
+val runtime'da, const val compile time'da hesaplanir.
 
 Normalde `val` anahtar kelimesi ile oluşturulan bir değişken **Sadece Okunur (Read-Only)** bir referanstır. Ancak `val` ile tanımlanan bir değişkenin değeri kod çalışırken, yani uygulamanın yürütüldüğü esnada **Çalışma Zamanı (Runtime)**'nda hesaplanabilir (Örneğin, bir fonksiyondan dönen değer veya veritabanından çekilen bir veri `val` değişkenine atanabilir).
 
@@ -313,7 +315,7 @@ fun main() {
 
 Bu sekilde sabitligi kesin olan degerleri kendi basina birakma, bir isim ver ve en tepeye yaz. kodun icinde de o sabiti kullan. daha anlasilir olacaktir.
 
-Bunun gibi sayilara magic number deniyor. ama sadece sayilar icin degil her turlu deger icin dusunebilirsin.
+Bunun gibi sayilara magic number deniyor. ama sadece sayilar icin degil her turlu deger icin dusunebilirsin. (magic value)
 
 ---
 ## 1.15
@@ -335,6 +337,8 @@ Bunun gibi sayilara magic number deniyor. ama sadece sayilar icin degil her turl
 ---
 ## 1.16
 ### Type inference
+
+tip cikarimi. degiskenin degerinin otomatik anlasilmasi.
 
 In this case, Kotlin knows that `text` is a string and `n` is a number. Kotlin determines the types of both variables automatically. This mechanism is called **type inference**.
 

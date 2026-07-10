@@ -5,10 +5,16 @@
 ## 2.1
 ### Integer Numbers
 
+bunlar signed yani isaretli integer'lardir.
+- Byte -> -128 to 127
+- Short -> -32768 to 32767
+- Int -> 2 + 3x000 (- ve +) (2 milyon civari)
+- Long -> 9 + 6x000 (- ve +) (9 kentilyon civari)
+
 **Integer numbers** (0, 1, 2, ...) are represented by the following four types: `Long`, `Int`, `Short`, `Byte` (from the largest to the smallest). These types have different sizes and may represent different ranges of values. The integer type range can be calculated as −(2n−1) to (2n−1)−1, where **n** is the number of bits. The range includes 0, that's why we subtract 1 from the upper bound.
 
-- `Byte`: 8 bits (1 byte), range varies from -128 to 127;
-- `Short`: 16 bits (2 bytes), range varies from -32768 to 32767;
+- `Byte`: 8 bits (1 byte), range varies from -128 to 127; -> (2^7)
+- `Short`: 16 bits (2 bytes), range varies from -32768 to 32767; -> (2^15)
 - `Int`: 32 bits (4 bytes), range varies from −(2^31) to (2^31)−1;
 - `Long`: 64 bits (8 bytes), range varies from −(2^63) to (2^63)−1.
 
@@ -18,12 +24,15 @@ val one = 1  // Int
 val oneMillion = 1_000_000  // Int
 
 val twoMillion = 2_000_000L           // Long because it is tagged with L
+// kucuk L (l) olmaz. L olmali. sebebi, kucuk l'nin bazi fontlarda baska karakterlerle karistirilmasidir.
 val bigNumber = 1_000_000_000_000_000 // Long, Kotlin automatically chooses it (Int is too small)
 val ten: Long = 10                    // Long because the type is specified
 
 val shortNumber: Short = 15 // Short because the type is specified
 val byteNumber: Byte = 15   // Byte because the type is specified
 ```
+
+[3.14](notes-3.md#3.14) notunda da unsigned integerlari gorduk.
 
 ---
 ## 2.2
@@ -36,12 +45,13 @@ val pi = 3.1415              // Double
 val e = 2.71828f             // Float because it is tagged with f
 
 val fraction: Float = 1.51f  // Float because the type is specified
-// Float diye tipini belirtmis bile olsak degerin sagina f ya da F birakmak zorundayiz. cunku birakmazsak o degerin tipi double sayilacaktir ve bu satir icin type mismatch olur.
+// Float diye tipini belirtmis bile olsak degerin sagina f ya da F birakmak zorundayiz. cunku ondalikli sayilar varsayilan olarak double'dir. birakmazsak o degerin tipi double sayilacaktir ve bu satir icin type mismatch olur.
 ```
 
-- Integer types: Byte < Short < Int < Long
-- Floating-point types: Float < Double
-	- double: karahanli, float: kilic.
+- Numeric Types
+	- Integer types: Byte < Short < Int < Long
+	- Floating-point types: Float < Double
+		- double: karahanli, float: kilic.
 
 For type inference -> Kotlin neredeyse her zaman bir sayının tamsayı (**integer**) olduğu sonucunu çıkaracaktır (aksini belirtmediğiniz veya ondalık sayı kullanmadığınız sürece)
 
@@ -59,9 +69,13 @@ val space = ' '
 val dollar = '$'
 ```
 
+Char'lar 16 bitliktir.
+
 ### Booleans
 
 Kotlin provides a type called `Boolean`. It can store only two values: `true` and `false`. It represents only one bit of information, but its size is not precisely defined.
+
+booleanlar Sadece bir bitlik bilgiyi temsil eder, ancak boyutu kesin olarak tanımlanmamıştır.
 
 ```kotlin
 val enabled = true
@@ -163,6 +177,8 @@ val num = scanner.nextInt()   // read a number, e.g., 123
 val string = scanner.next()   // read a string, e.g., "Hello"
 ```
 
+nextLine tum satiri, nextInt siradaki tek int'i, next ise siradaki tek string'i okur. 
+
 Ok, now we've read the data and don't need `Scanner` anymore. When we used `readln()`, we just proceeded with our code and moved further. But `Scanner` can consume PC resources all the time. To stop it, we need to use the method `close()`, which... cancels `Scanner`:)
 
 ```kotlin
@@ -212,6 +228,8 @@ if (scanner.hasNext()) {
 }
 ```
 
+`scanner.hasNext()` ile kontrollu alim yapilabilir. okunacak string yoksa calismaz.
+
 ---
 ## 2.9
 ### Appending values to strings
@@ -240,6 +258,8 @@ val errorString = 10 + "abc" // an error here!
 // char ile de baslarsa olur. sikinti olmaz. char ya da string disindakilerde sikinti olur.
 println('1' + "2" + 3)
 ```
+
+Kotlin'de (ve genel olarak programlama dillerinde) operand, bir operatörün üzerinde işlem yaptığı veridir. Operatörler (artı, eksi, çarpı gibi) ne yapılacağını söylerken, operandlar bu işlemin kiminle yapılacağını belirtir.
 
 ---
 ## 2.10
@@ -378,6 +398,13 @@ println(12 % 4) // prints 0 because 12 divided by 4 leaves no remainder
 
 arti ve eksinin toplama ve cikarma yerine sayisi pozitif ya da negatif yapmasiyla ilgili.
 
+Bir operatörün "unary" olması, **kaç tane operand (işlenen değer) aldığına** göre isimlendiriliyor:
+
+```kotlin
+val a = -5     // unary: SADECE 1 operand alıyor (5)
+val b = 3 + 2  // binary: 2 operand alıyor (3 ve 2)
+```
+
 A unary operator takes a single value as the operand.
 
 - A **unary plus** just gives you a value. It is an optional operator, so you omit it in practice:
@@ -404,7 +431,7 @@ Take a look at the precedence order of arithmetic operators, including parenthes
 4. Addition and subtraction.
 
 lisede ogrendigimiz siralamaya uygun. sorun yok.
-asagilarda "Order of precedence" basliginda bunun daha kapsamlisi var.
+[2.18](#2.18) notunda bunun daha kapsamlisi var.
 
 ---
 ## 2.15
@@ -423,6 +450,8 @@ var a: Int
 a += 5 // compile-time error, Variable 'a' must be initialized
 ```
 
+---
+## 2.16
 ### Increment and decrement
 
 Another common operation is increasing or decreasing a number by one. Of course, you can use `+= 1` or `-= 1`, but Kotlin provides an even better way to do this: **increment** and **decrement** operations. Let's look at an example:
@@ -433,11 +462,10 @@ num++  // 4, increment
 num--  // 3, decrement
 ```
 
----
-## 2.16
 ### Prefix form
 
-`++a` ya da `--a` -> her seyden once degiskenin degerini artir/azalt. ardindan siradaki islem her ne ise onu yap.
+prefix increment: ++a, prefix decrement: --a
+her seyden once degiskenin degerini artir/azalt. ardindan siradaki islem her ne ise onu yap.
 
 The prefix form changes the value of a variable before it is used. Let's look at some examples.
 
@@ -463,7 +491,9 @@ println(b)  // b = 9
 ## 2.17
 ### Postfix form
 
-`a++` ya da `a--` -> Değişkenin şu anki mevcut değerini işlemde kullan, ama bu kullanma islemi bittikten hemen sonra (bir sonraki adıma geçmeden önce) bellekteki değerini 1 artır/azalt.
+postfix increment: a++
+postfix decrement: a--
+Değişkenin şu anki mevcut değerini işlemde kullan, ama bu kullanma islemi bittikten hemen sonra (bir sonraki adıma geçmeden önce) bellekteki değerini 1 artır/azalt.
 
 By contrast, the postfix form changes the value of a variable after it is used. Let's look at the examples.
 
@@ -508,6 +538,12 @@ println(d)   // this is 2
 // a nin kendi degeri islemde kullanilacak. satirdaki tum islemler bitip atama yapildiktan sonra da a'nin degeri bir artirilacak.
 ```
 
+- 1- parantez (elle birakilir zaten oncelik belirlemek icin)
+- 2- postfix/prefix artir/azalt ve unary (bunlar tek bir degiskene etki eden seylerdir. bu yuzden islem yapmadan once uygulanirlar)
+- 3- carpma, bolme, mod alma
+- 4- toplama, cikarma
+- 5- atama (her seyden sonra)
+
 ---
 ## 2.19
 ### Evaluation Order
@@ -526,7 +562,6 @@ var num = 0
 println(num++ + ++num)
 //          0  +  2  = 2
 // prints: 2
-// ilk basta anlamasi zor bir sey ama kafa yorunca anliyorsun.
 
 ////
 
@@ -541,6 +576,7 @@ var num = 0
 num = num++
 println(num)
 // prints: 0
+// atama en son yapilan is. artirma isi daha atama yapilmadan once yapildigi icin, num degeri once 1 oluyor sonra tekrar 0'a esitlenmis oluyor. cunku postfix'in olayi bu. bulundugu yerde kendi degerini kullanmaya soz veriyor, daha sonra artiriliyor olsa bile.
 ```
 
 Bunlari bilmek lazim ama İşlem sırasına (Evaluation Order) dayalı yan etkiler (Side effects) yaratmak, bakımı imkansız spagetti kodlara yol açar.

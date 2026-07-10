@@ -23,9 +23,25 @@ println(one >= zero)          // OK, prints true
 println(one == zero.toLong()) // OK, prints false
 ```
 
+bu operatorlere Relational Operators denir.
+
+Kotlin'de `>`, `<`, `>=`, `<=` operatörleri arka planda `compareTo()` fonksiyonunu çağırıyor. == ve `!=` ise arka planda `equals()` fonksiyonunu çağırıyor. Bunlar **birbirinden bağımsız iki farklı mekanizma:**
+
+```kotlin
+one >= zero        // arka planda: one.compareTo(zero) >= 0
+one == zero        // arka planda: one.equals(zero)  <- burada hata
+```
+
+Kotlin'de (aslında JVM/Java dünyasında da) `equals()` fonksiyonunun temel bir kuralı var: **iki nesne, sadece aynı tipteyse "gerçekten eşit" sayılabilir.**
+
+`>`, `<`, `>=`, `<=` → **sayısal büyüklüğe** bakar, tip farkı sorun değil, güvenle karşılaştırılabilir.  
+`. == ve !=` → **"aynı tipte ve aynı değerde mi"** diye sorar, farklı tipte iki nesne JVM açısından hiçbir zaman "eşit" sayılmayacağı için, Kotlin bunu **derleme zamanında hata vererek** önceden yakalıyor — çalışma zamanında sessizce yanlış `false` dönmesini engelliyor.
+
 ---
 ## 4.2
 ### Joining relational operations
+
+İlişkisel işlemlerin birleştirilmesi.
 
 Kotlin cannot process expressions like:
 
@@ -203,6 +219,8 @@ fun main() {
 
 There is no "first read input, then output". Input and output streams are independent. Your programs reads the input from the platform, and the platform simply reads its output.
 
+Giriş akışı (input stream) ve çıkış akışı (output stream) birbirinden **bağımsız** çalışıyor — istediğin an oku, istediğin an yaz, bunları istediğin sırayla iç içe geçirebilirsin. Bu yüzden iki versiyon da geçerli ve "aynı" sayılıyor: platform senin ne zaman okuyup ne zaman yazdığını umursamıyor, sadece **doğru sırayla** input istediğini ve doğru sırayla output verdiğini önemsiyor.
+
 ---
 ## 4.8
 ### Working with strings
@@ -246,6 +264,10 @@ valString = "strong" // error, you cannot reassign val
 ```
 
 Actually, we do not modify the stored value in the `varString` variable. Instead, we assign a new value to it. So, it is absolutely legal. This is one of the ways to work with strings. If you need to modify a string, just create a new one.
+
+stringler immutable'dir. dizeyi degistirmek diye bir sey yoktur, sadece yeni bir dize atayabilirsin. bunun icin de var kullanman gerekir. val kullanmana ragmen ornegin listelerin icerigi duzenlenebilir demistik. burada o da gecerli degil. string her zaman immutable'dir.
+
+[4.17](#4.17) notunda bu notun devami var. stringlerin array olmamasiyla ilgili.
 
 ---
 ## 4.10
@@ -368,7 +390,7 @@ println(example.replace('.', '!'))         // "Good morning!!!"
 As you know, strings are immutable, so the `replace` function returns a new string without changing the original string. So, if you run this code:
 
 ```kotlin
-val example = "Good morning"	
+val example = "Good morning"
 example.replace("morning", "bye")
 println(example)
 ```
@@ -415,6 +437,8 @@ println(num) // it prints 0.9999999999999999
 
 Remember that the output might contain many zeroes, as shown below, because operations with floating-point numbers can produce inexact results. This happens because computers work with binary numbers, and many floating-point numbers cannot be represented finitely in base 2. Working with these inexact numbers leads to imprecise results.
 
+Bunun nedeni, bilgisayarların ikili sayı sistemiyle çalışması ve birçok kayan noktalı sayının 2 tabanında sonlu bir şekilde temsil edilememesidir. Bu kesin olmayan sayılarla çalışmak, kesin olmayan sonuçlara yol açar.
+
 ---
 ## 4.16
 ### Decimal seperator
@@ -437,5 +461,27 @@ val num = 3.14
 println(String.format(Locale.US, "%.2f", 3.14159)) // "3.14" <- nokta
 println(String.format(Locale("tr"), "%.2f", 3.14159)) // "3,14" <- virgül!
 ```
+
+---
+## 4.17
+### Stringler array degildir
+
+stringler array degildir ancak disariya array gibi davranan bazi ozellikler sunarlar.
+
+Kotlin'de `String`, `Array<Char>` (bir karakter dizisi/array) **değildir** — kendi başına, ayrı bir tiptir. Ama davranış olarak bir array'e **çok benziyor**, çünkü index'lenebilir ve sıralı.
+
+Kotlin'de `String`, `CharSequence` adlı bir **arayüzü (interface)** uygular:
+
+```kotlin
+val greeting: String = "Hello"
+val asCharSequence: CharSequence = greeting // bu geçerli, String zaten bir CharSequence'dır
+```
+
+`CharSequence`, "sıralı karakter dizisi gibi davran" sözleşmesi (contract) sunuyor — index ile erişim (`[]`), uzunluk (`.length`), iterasyon gibi şeyleri garanti ediyor. Ama bu, `String`'in **arka planda bir array olduğu** anlamına gelmiyor; sadece **dışarıya array gibi davranan bir interface sunduğu** anlamına geliyor.
+
+|                            | Sıralı/index'lenebilir mi? | Değiştirilebilir mi? |
+| -------------------------- | -------------------------- | -------------------- |
+| Kotlin `String`            | ✅ Evet                     | ❌ Hayır, immutable   |
+| Kotlin `MutableList<Char>` | ✅ Evet                     | ✅ Evet               |
 
 ---
