@@ -8,12 +8,20 @@ Notları [Obsidian](https://obsidian.md) ile tutuyorum, bu yüzden repo aynı za
 
 ### İçindekiler
 
-| Not | Topics |
+| Last Notes | Topics |
 |-----|--------|
-| [notes-1](notes/notes-1.md) | Core Terminology, JDK vs JRE vs JVM, Declaring Variables (`val` / `var` / `const`), Comment Types & KDoc, Code Style (K&R Braces, Indentation), Naming Rules & Conventions, Magic Numbers, Type Inference & Type Mismatch |
-| [notes-2](notes/notes-2.md) | Numeric Types (Integer & Floating-Point), Characters & Booleans, Java Scanner, String Operations (Concatenation, Raw Strings, Templates), Operators (Arithmetic, Unary, Compound Assignment, Increment/Decrement), Precedence & Evaluation Order, Side Effects & Pure Functions |
-| [notes-3](notes/notes-3.md) | Boolean Variables & Logical Operators, Logical Operator Precedence, Standard Input (`readln`, Reading Multiple Values), Numeric & String Type Conversion, Type Coercion, Unsigned Integers & Data Type Overflow, `if` in Kotlin vs. Java, Practice Katas |
 | [notes-4](notes/notes-4.md) | Comparing Integer Numbers & Relational Operations, Unicode & Chars (Escape Sequences, Processing Characters), Input & Output Streams, Working with Strings (Immutability, Comparing, Substrings, Replacing Parts), Floating-Point Arithmetic (Computation Errors, Decimal Separator) |
+| [notes-3](notes/notes-3.md) | Boolean Variables & Logical Operators, Logical Operator Precedence, Standard Input (`readln`, Reading Multiple Values), Numeric & String Type Conversion, Type Coercion, Unsigned Integers & Data Type Overflow, `if` in Kotlin vs. Java, Practice Katas |
+
+<details>
+<summary>Other Notes</summary>
+
+| Other Notes | Topics |
+| ----- | -------- |
+| [notes-2](notes/notes-2.md) | Numeric Types (Integer & Floating-Point), Characters & Booleans, Java Scanner, String Operations (Concatenation, Raw Strings, Templates), Operators (Arithmetic, Unary, Compound Assignment, Increment/Decrement), Precedence & Evaluation Order, Side Effects & Pure Functions |
+| [notes-1](notes/notes-1.md) | Core Terminology, JDK vs JRE vs JVM, Declaring Variables (`val` / `var` / `const`), Comment Types & KDoc, Code Style (K&R Braces, Indentation), Naming Rules & Conventions, Magic Numbers, Type Inference & Type Mismatch |
+
+</details>
 
 ### Kaynaklar
 
@@ -29,6 +37,8 @@ Kurs sırasında anlamadığım konularda yapay zekadan yardım alıyorum. Bunun
 
 - **[instructions.md](kotlin-mentor-docs/instructions.md)** — Projenin "system prompt"u: seviyem, hedeflerim, dil kuralları, öğretim tarzı tercihlerim
 - **[kotlin-style-guide.md](kotlin-mentor-docs/kotlin-style-guide.md)** — Google/Android'in resmî Kotlin stil rehberi (idiomatic yazım için referans kaynak)
+
+Notlarım Obsidian vault'uma, vault'um GitHub repo'ma, repo'm da Claude projeme bağlı. Bu üç platform iç içe çalışıyor. Ve bu çalışma sistemi ile öğrendiklerimi unutmamak için bir de tekrar sistemi kurdum.
 
 ### Anki (Recall) Sistemi
 
