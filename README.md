@@ -10,11 +10,12 @@ Notları [Obsidian](https://obsidian.md) ile tutuyorum, bu yüzden repo aynı za
 
 | Last Notes | Topics |
 |-----|--------|
+| [notes-5](notes/notes-5.md) | Expression-style `if`, `when` Expressions (Ranges, Conditions, Branch Order, Optional `else`), Ranges (Closed & Open-ended, `downTo`, `step`), Trailing Comma, Subject vs. Argument, Loops (`repeat`, `for`, `while`, `do...while`), Structural Jump Expressions (`break`, `continue`, `return`) & Labels, Practice Katas |
 | [notes-4](notes/notes-4.md) | Comparing Integer Numbers & Relational Operations, Unicode & Chars (Escape Sequences, Processing Characters), Input & Output Streams, Working with Strings (Immutability, Comparing, Substrings, Replacing Parts), Floating-Point Arithmetic (Computation Errors, Decimal Separator) |
 | [notes-3](notes/notes-3.md) | Boolean Variables & Logical Operators, Logical Operator Precedence, Standard Input (`readln`, Reading Multiple Values), Numeric & String Type Conversion, Type Coercion, Unsigned Integers & Data Type Overflow, `if` in Kotlin vs. Java, Practice Katas |
 
 <details>
-<summary>Other Notes</summary>
+<summary>OTHER NOTES</summary>
 
 | Other Notes | Topics |
 | ----- | -------- |
