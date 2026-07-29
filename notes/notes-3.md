@@ -1,5 +1,6 @@
 # Kotlin Notes - 3
-#### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)
+
+_Boolean Variables & Logical Operators, Logical Operator Precedence, Standard Input (`readln`, Reading Multiple Values), Numeric & String Type Conversion, Type Coercion, Unsigned Integers & Data Type Overflow, `if` in Kotlin vs. Java, Practice Katas_
 
 ---
 ## 3.1
@@ -606,3 +607,4 @@ return if (valueN % 2 == 0) valueN / 2 else (valueN + 1) / 2
 "Lifted out of if" derken kastedilen bu: `return` kelimesini `if`'in **dışına** çıkardık.
 
 ---
+##### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)

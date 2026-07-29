@@ -1,5 +1,6 @@
 # Kotlin Notes - 2
-#### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)
+
+_Numeric Types (Integer & Floating-Point), Characters & Booleans, Java Scanner, String Operations (Concatenation, Raw Strings, Templates), Operators (Arithmetic, Unary, Compound Assignment, Increment/Decrement), Precedence & Evaluation Order, Side Effects & Pure Functions_
 
 ---
 ## 2.1
@@ -647,4 +648,4 @@ fun main() {
 **Değiştirilebilir Değişken Vurgusu (Mutable Variable Highlighting):** Kotlin'de bir değişkenin (var) yeniden atanması veya değiştirilmesi, sistemde bir **Yan Etki (Side Effect)** potansiyeli yaratır. IntelliJ IDEA veya Android Studio, `var` ile tanımladığın ve sonradan değerini değiştirdiğin değişkenlerin altını veya metnini varsayılan olarak hafifçe **çizgili (underlined)** veya farklı bir renkte gösterir. Bu, IDE'nin sana "Dikkat et, burada bir state değişimi ve yan etki oluyor, kodunu takip etmesi zorlaşabilir" deme şeklidir. IDE'nin bu görsel ipucunu takip ederek mimarini daha temiz (Pure) hale getirebilirsin.
 
 ---
-
+##### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)

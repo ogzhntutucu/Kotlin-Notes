@@ -1,5 +1,6 @@
 # Kotlin Notes - 4
-#### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)
+
+_Comparing Integer Numbers & Relational Operations, Unicode & Chars (Escape Sequences, Processing Characters), Input & Output Streams, Working with Strings (Immutability, Comparing, Substrings, Replacing Parts), Floating-Point Arithmetic (Computation Errors, Decimal Separator)_
 
 ---
 ## 4.1
@@ -485,3 +486,4 @@ val asCharSequence: CharSequence = greeting // bu geçerli, String zaten bir Cha
 | Kotlin `MutableList<Char>` | ✅ Evet                     | ✅ Evet               |
 
 ---
+##### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)

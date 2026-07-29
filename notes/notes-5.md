@@ -1,5 +1,6 @@
 # Kotlin Notes - 5
-#### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)
+
+_Expression-style `if`, `when` Expressions (Ranges, Conditions, Branch Order, Optional `else`), Ranges (Closed & Open-ended, `downTo`, `step`), Trailing Comma, Subject vs. Argument, Loops (`repeat`, `for`, `while`, `do...while`), Structural Jump Expressions (`break`, `continue`, `return`) & Labels, Practice Katas_
 
 ---
 ## 5.1
@@ -753,3 +754,4 @@ Yani cümledeki "you are basically breaking the inner loop and continue in outer
 Etiketsiz `continue`, sadece en içteki döngüyü etkileyebildiği için, "iç döngüden tamamen çık ama dış döngüye devam et" demenin normal yolu yok — bunu yapmak istiyorsan ya karmaşık `Boolean` bayrak değişkenleri (`flag`) kullanman ya da label kullanman gerekir. Label, bu ihtiyacı temiz bir şekilde çözüyor.
 
 ---
+##### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)

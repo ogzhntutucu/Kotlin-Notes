@@ -1,5 +1,6 @@
 # Kotlin Notes - 1
-#### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)
+
+_Core Terminology, JDK vs JRE vs JVM, Declaring Variables (`val` / `var` / `const`), Comment Types & KDoc, Code Style (K&R Braces, Indentation), Naming Rules & Conventions, Magic Numbers, Type Inference & Type Mismatch_
 
 ---
 ## 1.1
@@ -381,3 +382,4 @@ age = "31 years old" // Type mismatch
 Note, you cannot change the type of a variable.
 
 ---
+##### [@ogzhntutucu](https://github.com/ogzhntutucu/Kotlin-Notes)

@@ -4,7 +4,7 @@
 
 Repo, Kotlin öğrenme sürecimde topladığım notları içerir. Tek bir kursa bağlı değildir; zamanla farklı kurslardan, videolardan ve dokümanlardan öğrendiğim her şeyi buraya eklemeye devam edeceğim. Yani "Kotlin'e dair öğrendiklerimin" biriktiği yaşayan bir arşivdir.
 
-Notları [Obsidian](https://obsidian.md) ile tutuyorum, bu yüzden repo aynı zamanda bir Obsidian vault'udur. Öncelikli amacı kişisel notlar olmakla birlikte ayrıca faydalanmak isteyen olursa diye herkese açık.
+Notları Obsidian ile tutuyorum, bu yüzden repo aynı zamanda bir Obsidian vault'udur. Öncelikli amacı kişisel notlar olmakla birlikte ayrıca faydalanmak isteyen olursa diye herkese açık.
 
 ### İçindekiler
 
@@ -56,6 +56,4 @@ kotlin-mentor-docs/     # Kotlin Mentor (Claude Project) yapılandırma dosyalar
 anki-cards/             # Anki kart dosyaları (cards-N.txt) + üretim kılavuzu ve şablonlar
 ```
 
----
-
-Obsidian'ın `.obsidian/` yapılandırma klasörü, `.gitignore` dosyası aracılığıyla kasıtlı olarak hariç tutulmuştur.
+Obsidian'ın `.obsidian/` yapılandırma klasörü, `.gitignore` aracılığıyla kasıtlı olarak hariç tutuldu.
